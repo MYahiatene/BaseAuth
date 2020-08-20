@@ -4,6 +4,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-mode
    */
   mode: 'universal',
+  srcDir: './src/frontend',
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target
