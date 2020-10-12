@@ -1,0 +1,8 @@
+[
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/mokrane/BaseAuth/src/frontend/pages/index.vue",
+    "chunkName": "pages/index"
+  }
+]
