@@ -1,0 +1,9 @@
+[
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/mokrane/baseauth/src/main/nuxt/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_02fd1f42"
+  }
+]
