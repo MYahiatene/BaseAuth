@@ -12,7 +12,7 @@
   </component>
   <component name="RunManager">
     <configuration name="BaseauthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="baseauth" />
+      <module name="baseauth_final" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="de.joayahiatene.baseauth.BaseauthApplication" />
       <method v="2">
         <option name="Make" enabled="true" />

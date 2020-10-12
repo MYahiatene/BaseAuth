@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/baseauth.iml" filepath="$PROJECT_DIR$/baseauth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/baseauth_final.iml" filepath="$PROJECT_DIR$/baseauth_final.iml" />
     </modules>
   </component>
 </project>
