@@ -3,16 +3,40 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/jwtsecurity" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a86f7898-6bf0-4d0a-8893-eff2659de802" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/password/RandomPasswordGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/controller/RegistrationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/response/ValidationResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/baseauth_final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/baseauth_final.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +70,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -54,16 +79,19 @@
     <property name="settings.editor.splitter.proportion" value="0.26738492" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="startup" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -87,16 +115,93 @@
       <workItem from="1602581310641" duration="540000" />
       <workItem from="1602589982872" duration="1244000" />
     </task>
+    <task id="LOCAL-00001" summary="Added Init-DB for Testing purposes">
+      <created>1602597505943</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602597505943</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/jwtsecurity" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Added Init-DB for Testing purposes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Init-DB for Testing purposes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="768" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser" timestamp="1602590715961">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="768" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1602590715961" />
+    <state x="320" y="0" key="CommitChangelistDialog2" timestamp="1602597504155">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state x="320" y="0" key="CommitChangelistDialog2/0.0.1475.789@0.0.1475.789" timestamp="1602597504155" />
+    <state width="1431" height="199" key="GridCell.Tab.0.bottom" timestamp="1602597507165">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state width="1431" height="199" key="GridCell.Tab.0.bottom/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
+    <state width="1431" height="199" key="GridCell.Tab.0.center" timestamp="1602597507165">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state width="1431" height="199" key="GridCell.Tab.0.center/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
+    <state width="1431" height="199" key="GridCell.Tab.0.left" timestamp="1602597507165">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state width="1431" height="199" key="GridCell.Tab.0.left/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
+    <state width="1431" height="199" key="GridCell.Tab.0.right" timestamp="1602597507165">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state width="1431" height="199" key="GridCell.Tab.0.right/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
+    <state width="1431" height="199" key="GridCell.Tab.1.bottom" timestamp="1602597507166">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state width="1431" height="199" key="GridCell.Tab.1.bottom/0.0.1475.789@0.0.1475.789" timestamp="1602597507166" />
+    <state width="1431" height="199" key="GridCell.Tab.1.center" timestamp="1602597507165">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state width="1431" height="199" key="GridCell.Tab.1.center/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
+    <state width="1431" height="199" key="GridCell.Tab.1.left" timestamp="1602597507165">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state width="1431" height="199" key="GridCell.Tab.1.left/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
+    <state width="1431" height="199" key="GridCell.Tab.1.right" timestamp="1602597507165">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state width="1431" height="199" key="GridCell.Tab.1.right/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
+    <state x="268" y="49" key="Maven.ArtifactSearchDialog" timestamp="1602597857573">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state x="268" y="49" key="Maven.ArtifactSearchDialog/0.0.1475.789@0.0.1475.789" timestamp="1602597857573" />
     <state x="449" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1602590160119">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
