@@ -2,19 +2,12 @@
   <div>
     <b-container class="headerCont" fluid>
       <div id="nav">
-        <b-navbar class="navBar fixed-top" type="light">
+        <b-navbar class="navBar fixed-top" type="dark">
           <b-navbar-nav>
             <b-nav-item nuxt-link to="/"> Home </b-nav-item>
             <b-nav-item-dropdown right text="Modules">
               <b-dropdown-item nuxt-link to="/dashboard">
                 Main-Dashboard
-              </b-dropdown-item>
-              <b-dropdown-item nuxt-link to="/timer"> Timer </b-dropdown-item>
-              <b-dropdown-item nuxt-link to="/project">
-                Project
-              </b-dropdown-item>
-              <b-dropdown-item nuxt-link to="/statistics">
-                Statistics
               </b-dropdown-item>
             </b-nav-item-dropdown>
             <b-nav-item nuxt-link to="/about"> About </b-nav-item>
@@ -24,7 +17,7 @@
             <!--div v-if="$store.state.auth.jwtToken">
               <b-row>
                 <b-col>
-                  <b-avatar button @click="toProfile()">
+                  <b-avatar button nuxt-link to="/profile">
                     <img :src="'https://gravatar.com/avatar/${hash}?d=identicon'">
                   </b-avatar>
                 </b-col>
@@ -56,28 +49,19 @@
 <script>
 export default {
   name: 'Header',
-  methods: {
-    toProfile() {
-      this.$router.push('/profile')
-    },
-  },
 }
 </script>
 
-<style scoped>
+<style>
 .navBar {
-  background: #8fd19e;
-}
-
-#nav {
-  color: #000000;
-}
-
-#nav a.router-link-exact-active {
-  color: #21392e;
+  background: #8a8a8a;
 }
 
 .headerCont {
   margin-bottom: 5vh;
+}
+
+.nav-link {
+  color: azure;
 }
 </style>

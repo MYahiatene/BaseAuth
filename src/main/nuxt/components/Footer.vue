@@ -5,7 +5,7 @@
         <b-col />
         <b-col>
           <h5>Pages</h5>
-          <b-nav type="light" vertical>
+          <b-nav type="dark" vertical>
             <b-nav-item nuxt-link to="/dashboard"> Dashboard </b-nav-item>
             <b-nav-item nuxt-link to="/about"> About </b-nav-item>
             <b-nav-item nuxt-link to="/help"> Help </b-nav-item>
@@ -42,7 +42,11 @@ export default {
 
 <style scoped>
 .footerCont {
-  background-color: #8fd19e;
+  background-color: #8a8a8a;
   padding: 5vh;
+}
+
+.nav-link {
+  color: azure;
 }
 </style>

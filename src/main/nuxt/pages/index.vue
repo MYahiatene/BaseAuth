@@ -2,13 +2,13 @@
   <div class="container">
     <div>
       <logo />
-      <h1 class="title">
+      <h5 class="title">
         BaseAuth <br />
-        The Basic authentification for all purposes
-      </h1>
-      <h2 class="subtitle">
+        Basic Nuxt-Auth. for everything
+      </h5>
+      <h4 class="subtitle">
         Welcome and thank you for your interest in our setup !
-      </h2>
+      </h4>
       <div class="links">
         <b-button nuxt-link to="/register" variant="primary">
           Register
@@ -43,7 +43,7 @@ export default {
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
-  font-size: 100px;
+  font-size: 75px;
   color: #35495e;
   letter-spacing: 1px;
 }
