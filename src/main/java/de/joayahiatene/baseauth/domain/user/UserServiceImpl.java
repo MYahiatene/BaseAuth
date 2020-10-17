@@ -38,8 +38,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    // todo: check type cast
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String userName) {
+        return (UserDetails) userRepository.findById(userName).orElseThrow(() -> new UsernameNotFoundException("User " + userName + "doesnt  exist!"));
+
     }
 }
