@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -17,25 +18,24 @@ import java.util.logging.Logger;
 @Entity
 @Data
 @NoArgsConstructor
-public class User {
+public class User implements UserDetails {
 
     @Id
-    private String userName;
+    private String username;
 
-    private String firstName;
+    private String firstname;
 
-    public User(String userName, String firstName, String lastName, String password, String email, List<String> role) {
-        this.userName = userName;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String username, String firstname, String lastname, String password, String email, List<String> role) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.password = password;
         this.email = email;
         this.roles.addAll(role);
     }
 
-    private String lastName;
+    private String lastname;
 
-    @JsonIgnore
     private String password;
 
     private String email;
@@ -44,6 +44,7 @@ public class User {
     @ElementCollection
     private List<String> roles = new ArrayList<>();
 
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         final List<GrantedAuthority> authorities
                 = new ArrayList<>();
@@ -53,12 +54,32 @@ public class User {
         return authorities;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
     public void addRole(final String role) {
-        if (this.roles.contains(role)) {
-            Logger.getAnonymousLogger().info("role already existing");
-        } else {
-            this.roles.add(role);
+        if (roles == null) {
+            this.roles = new ArrayList<>();
         }
+
+        this.roles.add(role);
     }
 
 }

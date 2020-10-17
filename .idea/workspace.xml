@@ -30,13 +30,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86f7898-6bf0-4d0a-8893-eff2659de802" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/security/MethodSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/security/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/security/SecurityConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseauth_final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/baseauth_final.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/BaseauthApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/BaseauthApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/controller/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/startup/InitializeDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/start/InitializeDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/joayahiatene/baseauth/BaseauthApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/joayahiatene/baseauth/BaseauthApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,33 +77,29 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="settings.editor.splitter.proportion" value="0.26738492" />
+    <property name="settings.editor.selected.configurable" value="Console" />
+    <property name="settings.editor.splitter.proportion" value="0.2296047" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="startup" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="de.joayahiatene.baseauth" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="BaseauthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="baseauth_final" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="de.joayahiatene.baseauth.BaseauthApplication" />
@@ -118,7 +122,9 @@
       <workItem from="1602581310641" duration="540000" />
       <workItem from="1602589982872" duration="1244000" />
       <workItem from="1602939324266" duration="445000" />
-      <workItem from="1602939797372" duration="2419000" />
+      <workItem from="1602939797372" duration="11593000" />
+      <workItem from="1602951432666" duration="137000" />
+      <workItem from="1602951597240" duration="5637000" />
     </task>
     <task id="LOCAL-00001" summary="Added Init-DB for Testing purposes">
       <created>1602597505943</created>
@@ -164,58 +170,82 @@
     <option name="LAST_COMMIT_MESSAGE" value="Added Init-DB for Testing purposes" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="768" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser" timestamp="1602590715961">
+    <state x="606" y="321" width="697" height="472" key="#Log_Highlighting_(ideolog)" timestamp="1602951484931">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="768" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1602590715961" />
+    <state x="606" y="321" width="697" height="472" key="#Log_Highlighting_(ideolog)/0.27.1920.1053@0.27.1920.1053" timestamp="1602951484931" />
+    <state x="768" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser" timestamp="1602954370639">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="768" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1602954370639" />
+    <state x="716" y="419" width="487" height="283" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1602946947487">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="716" y="419" width="487" height="283" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.27.1920.1053@0.27.1920.1053" timestamp="1602946947487" />
+    <state x="762" y="429" width="385" height="255" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602952419919">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="762" y="429" width="385" height="255" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1602952419919" />
     <state x="320" y="0" key="CommitChangelistDialog2" timestamp="1602597504155">
       <screen x="0" y="0" width="1475" height="789" />
     </state>
     <state x="320" y="0" key="CommitChangelistDialog2/0.0.1475.789@0.0.1475.789" timestamp="1602597504155" />
-    <state width="1431" height="199" key="GridCell.Tab.0.bottom" timestamp="1602597507165">
-      <screen x="0" y="0" width="1475" height="789" />
+    <state width="1874" height="373" key="GridCell.Tab.0.bottom" timestamp="1602957208410">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1431" height="199" key="GridCell.Tab.0.bottom/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
-    <state width="1431" height="199" key="GridCell.Tab.0.center" timestamp="1602597507165">
-      <screen x="0" y="0" width="1475" height="789" />
+    <state width="1874" height="373" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1602957208410" />
+    <state width="1874" height="373" key="GridCell.Tab.0.center" timestamp="1602957208410">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1431" height="199" key="GridCell.Tab.0.center/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
-    <state width="1431" height="199" key="GridCell.Tab.0.left" timestamp="1602597507165">
-      <screen x="0" y="0" width="1475" height="789" />
+    <state width="1874" height="373" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1602957208410" />
+    <state width="1874" height="373" key="GridCell.Tab.0.left" timestamp="1602957208410">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1431" height="199" key="GridCell.Tab.0.left/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
-    <state width="1431" height="199" key="GridCell.Tab.0.right" timestamp="1602597507165">
-      <screen x="0" y="0" width="1475" height="789" />
+    <state width="1874" height="373" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1602957208410" />
+    <state width="1874" height="373" key="GridCell.Tab.0.right" timestamp="1602957208410">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1431" height="199" key="GridCell.Tab.0.right/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
-    <state width="1431" height="199" key="GridCell.Tab.1.bottom" timestamp="1602597507166">
-      <screen x="0" y="0" width="1475" height="789" />
+    <state width="1874" height="373" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1602957208410" />
+    <state width="1874" height="373" key="GridCell.Tab.1.bottom" timestamp="1602957208411">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1431" height="199" key="GridCell.Tab.1.bottom/0.0.1475.789@0.0.1475.789" timestamp="1602597507166" />
-    <state width="1431" height="199" key="GridCell.Tab.1.center" timestamp="1602597507165">
-      <screen x="0" y="0" width="1475" height="789" />
+    <state width="1874" height="373" key="GridCell.Tab.1.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1602957208411" />
+    <state width="1874" height="373" key="GridCell.Tab.1.center" timestamp="1602957208411">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1431" height="199" key="GridCell.Tab.1.center/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
-    <state width="1431" height="199" key="GridCell.Tab.1.left" timestamp="1602597507165">
-      <screen x="0" y="0" width="1475" height="789" />
+    <state width="1874" height="373" key="GridCell.Tab.1.center/0.27.1920.1053@0.27.1920.1053" timestamp="1602957208411" />
+    <state width="1874" height="373" key="GridCell.Tab.1.left" timestamp="1602957208410">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1431" height="199" key="GridCell.Tab.1.left/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
-    <state width="1431" height="199" key="GridCell.Tab.1.right" timestamp="1602597507165">
-      <screen x="0" y="0" width="1475" height="789" />
+    <state width="1874" height="373" key="GridCell.Tab.1.left/0.27.1920.1053@0.27.1920.1053" timestamp="1602957208410" />
+    <state width="1874" height="373" key="GridCell.Tab.1.right" timestamp="1602957208411">
+      <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state width="1431" height="199" key="GridCell.Tab.1.right/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
+    <state width="1874" height="373" key="GridCell.Tab.1.right/0.27.1920.1053@0.27.1920.1053" timestamp="1602957208411" />
     <state x="349" y="92" width="924" height="691" key="Maven.ArtifactSearchDialog" timestamp="1602942220854">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="268" y="49" key="Maven.ArtifactSearchDialog/0.0.1475.789@0.0.1475.789" timestamp="1602597857573" />
     <state x="349" y="92" width="924" height="691" key="Maven.ArtifactSearchDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1602942220854" />
-    <state x="449" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1602939770280">
+    <state x="449" y="188" width="1190" height="737" key="SettingsEditor" timestamp="1602951570196">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1602939770280" />
-    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1602590126882">
+    <state x="449" y="188" width="1190" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1602951570196" />
+    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1602950660600">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1602590126882" />
+    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1602950660600" />
+    <state x="500" y="208" width="910" height="697" key="spring file set editor" timestamp="1602949943977">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="500" y="208" width="910" height="697" key="spring file set editor/0.27.1920.1053@0.27.1920.1053" timestamp="1602949943977" />
   </component>
 </project>

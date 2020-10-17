@@ -21,9 +21,9 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    @Override
-    public User createUser(String userName, String password, String firstName, String lastName, List<String> role, String email) {
-        final RandomPasswordGenerator randomPasswordGenerator = new RandomPasswordGenerator();
+  //  @Override
+    //public User createUser(String userName, String password, String firstName, String lastName, List<String> role, String email) {
+       /* final RandomPasswordGenerator randomPasswordGenerator = new RandomPasswordGenerator();
         final User user;
         // for a completely fresh user to be generated the password value sent from the frontend must be null
         if (password == null) {
@@ -34,14 +34,16 @@ public class UserServiceImpl implements UserService {
             Arrays.fill(safePwd, '*');
         } else {
             user = new User(userName, firstName, lastName, password, email, role);
-        }
-        return userRepository.save(user);
-    }
+        }*/
+        //User user = new User("test", "mo", "ervin", "password", "email@domain.de", List.of("Admin"));
+       // userRepository.save(user);
+     //   return user;
+   // }
 
-    // todo: check type cast
     @Override
-    public UserDetails loadUserByUsername(String userName) {
-        return (UserDetails) userRepository.findById(userName).orElseThrow(() -> new UsernameNotFoundException("User " + userName + "doesnt  exist!"));
-
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user=  userRepository.findById(username).orElseThrow(()->new UsernameNotFoundException("Not found"));
+        return user;
     }
+
 }

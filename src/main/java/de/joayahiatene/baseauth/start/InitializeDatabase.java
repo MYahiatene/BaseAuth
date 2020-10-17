@@ -1,4 +1,4 @@
-package startup;
+package de.joayahiatene.baseauth.start;
 
 import de.joayahiatene.baseauth.domain.user.User;
 import de.joayahiatene.baseauth.domain.user.UserRepository;
@@ -7,34 +7,34 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 @Service
 @AutoConfigureBefore
 public class InitializeDatabase implements InitializingBean {
 
-    private final UserService userService;
     private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public InitializeDatabase(UserService userService, UserRepository userRepository) {
-        this.userService = userService;
+    public InitializeDatabase(UserService userService,UserRepository userRepository) {
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @Override
-    public void afterPropertiesSet() {
+    public void afterPropertiesSet() throws Exception {
         try {
             userService.loadUserByUsername("test");
-        } catch (UsernameNotFoundException ex) {
-            final User user = userService.createUser("test",
-                    "password",
-                    "Test", "Mastermind", List.of("ROLE_USER"), "test@email.de");
+        } catch (UsernameNotFoundException e) {
+            String pw =PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("password");
+            User user = new User("test", "ervin", "mo", pw, "email@domain", List.of("Admin"));
             userRepository.save(user);
-
         }
     }
 }
+
+

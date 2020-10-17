@@ -1,6 +1,8 @@
 package de.joayahiatene.baseauth.domain.security;
 
+import de.joayahiatene.baseauth.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -23,9 +25,10 @@ import java.util.Arrays;
 @EnableWebSecurity
 @EnableAutoConfiguration
 @EnableConfigurationProperties(SecurityConstants.class)
-public class    SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final SecurityConstants securityConstants;
+
 
     /**
      * The constructor takes our security constants(for jwt).
@@ -93,7 +96,7 @@ public class    SecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
-        corsConfiguration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "PATCH", "DELETE"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "PATCH", "DELETE", "OPTIONS"));
         source.registerCorsConfiguration("/**", corsConfiguration);
 
         return source;

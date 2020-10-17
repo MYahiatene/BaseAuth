@@ -36,8 +36,8 @@ public class RegistrationController {
             validationResponse.setValidated(false);
             validationResponse.setErrorMessage(error);
         } else {
-            userService.createUser(userDTO.getUsername(), userDTO.getPassword(), userDTO.getFirstName(),
-                    userDTO.getLastName(), List.of("ROLE_USER"), userDTO.getEmail());
+         //   userService.createUser(userDTO.getUsername(), userDTO.getPassword(), userDTO.getFirstname(),
+        //            userDTO.getLastname(), List.of("ROLE_USER"), userDTO.getEmail());
             validationResponse.setValidated(true);
             validationResponse.setSuccessMessage("Thank you for the registration!");
         }
