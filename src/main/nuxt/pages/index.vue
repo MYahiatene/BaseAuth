@@ -1,40 +1,37 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
+      <logo />
       <h1 class="title">
-        Baseauth
+        BaseAuth <br />
+        The Basic authentification for all purposes
       </h1>
+      <h2 class="subtitle">
+        Welcome and thank you for your interest in our setup !
+      </h2>
       <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+        <b-button nuxt-link to="/register" variant="primary">
+          Register
+        </b-button>
+        <b-button nuxt-link to="/login" variant="secondary"> Login </b-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import Logo from '~/components/Logo.vue'
+
+export default {
+  components: {
+    Logo,
+  },
+}
 </script>
 
 <style>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,10 +53,5 @@ export default {}
   font-size: 42px;
   color: #526488;
   word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
 }
 </style>

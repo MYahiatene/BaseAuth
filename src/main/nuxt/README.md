@@ -1,4 +1,4 @@
-# Baseauth
+# nuxt_2
 
 ## Build Setup
 

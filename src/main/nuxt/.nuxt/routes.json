@@ -2,7 +2,8 @@
   {
     "name": "index",
     "path": "/",
-    "component": "/home/mokrane/BaseAuth/src/frontend/pages/index.vue",
-    "chunkName": "pages/index"
+    "component": "C:\\\\Users\\\\DesertGun\\\\Desktop\\\\Entwicklung\\\\BaseAuth\\\\BaseAuth\\\\src\\\\main\\\\nuxt_2\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_0542d46c"
   }
 ]
