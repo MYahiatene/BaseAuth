@@ -12,23 +12,25 @@ import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Entity
 @Data
 @NoArgsConstructor
 public class User {
+
     @Id
     private String userName;
 
     private String firstName;
 
-    public User(String userName, String firstName, String lastName, String password, String email, String role) {
+    public User(String userName, String firstName, String lastName, String password, String email, List<String> role) {
         this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.roles.add(role);
+        this.roles.addAll(role);
     }
 
     private String lastName;
@@ -52,11 +54,11 @@ public class User {
     }
 
     public void addRole(final String role) {
-        if (roles == null) {
-            this.roles = new ArrayList<>();
+        if (this.roles.contains(role)) {
+            Logger.getAnonymousLogger().info("role already existing");
+        } else {
+            this.roles.add(role);
         }
-
-        this.roles.add(role);
     }
 
 }

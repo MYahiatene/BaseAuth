@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @AutoConfigureBefore
@@ -26,11 +28,11 @@ public class InitializeDatabase implements InitializingBean {
     @Override
     public void afterPropertiesSet() {
         try {
-            userService.loadUserByUsername("test@domain.de");
+            userService.loadUserByUsername("test");
         } catch (UsernameNotFoundException ex) {
-            final User user = userService.createUser("test@domain.de",
+            final User user = userService.createUser("test",
                     "password",
-                    "Test", "Mastermind", "ROLE_USER", "test@email.de");
+                    "Test", "Mastermind", List.of("ROLE_USER"), "test@email.de");
             userRepository.save(user);
 
         }

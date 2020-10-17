@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
+
 
 @Controller
 @CrossOrigin
@@ -35,7 +37,7 @@ public class RegistrationController {
             validationResponse.setErrorMessage(error);
         } else {
             userService.createUser(userDTO.getUsername(), userDTO.getPassword(), userDTO.getFirstName(),
-                    userDTO.getLastName(), "ROLE_USER", userDTO.getEmail());
+                    userDTO.getLastName(), List.of("ROLE_USER"), userDTO.getEmail());
             validationResponse.setValidated(true);
             validationResponse.setSuccessMessage("Thank you for the registration!");
         }

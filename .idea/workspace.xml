@@ -30,13 +30,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86f7898-6bf0-4d0a-8893-eff2659de802" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/controller/RegistrationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/dto/UserDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/response/ValidationResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseauth_final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/baseauth_final.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/controller/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/joayahiatene/baseauth/domain/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/startup/InitializeDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/startup/InitializeDatabase.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +74,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="settings.editor.splitter.proportion" value="0.26738492" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -114,6 +113,8 @@
       <updated>1602581308899</updated>
       <workItem from="1602581310641" duration="540000" />
       <workItem from="1602589982872" duration="1244000" />
+      <workItem from="1602939324266" duration="445000" />
+      <workItem from="1602939797372" duration="890000" />
     </task>
     <task id="LOCAL-00001" summary="Added Init-DB for Testing purposes">
       <created>1602597505943</created>
@@ -150,6 +151,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -198,14 +200,15 @@
       <screen x="0" y="0" width="1475" height="789" />
     </state>
     <state width="1431" height="199" key="GridCell.Tab.1.right/0.0.1475.789@0.0.1475.789" timestamp="1602597507165" />
-    <state x="268" y="49" key="Maven.ArtifactSearchDialog" timestamp="1602597857573">
-      <screen x="0" y="0" width="1475" height="789" />
-    </state>
-    <state x="268" y="49" key="Maven.ArtifactSearchDialog/0.0.1475.789@0.0.1475.789" timestamp="1602597857573" />
-    <state x="449" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1602590160119">
+    <state x="349" y="92" width="924" height="691" key="Maven.ArtifactSearchDialog" timestamp="1602939995923">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1602590160119" />
+    <state x="268" y="49" key="Maven.ArtifactSearchDialog/0.0.1475.789@0.0.1475.789" timestamp="1602597857573" />
+    <state x="349" y="92" width="924" height="691" key="Maven.ArtifactSearchDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1602939995923" />
+    <state x="449" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1602939770280">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="449" y="188" width="1022" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1602939770280" />
     <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1602590126882">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
