@@ -13,12 +13,7 @@
         </b-col>
         <b-col />
         <b-col>
-          <h5>Modules</h5>
-          <b-nav type="light" vertical>
-            <b-nav-item nuxt-link to="/timer"> Timer </b-nav-item>
-            <b-nav-item nuxt-link to="/project"> Project </b-nav-item>
-            <b-nav-item nuxt-link to="/statistics"> Statistics </b-nav-item>
-          </b-nav>
+          <!--TODO: Add content later-->
         </b-col>
         <b-col />
         <b-col>

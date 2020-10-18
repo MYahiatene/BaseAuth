@@ -30,14 +30,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86f7898-6bf0-4d0a-8893-eff2659de802" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/nuxt/.nuxt/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/nuxt/.nuxt/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/nuxt/.nuxt/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/nuxt/.nuxt/router.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/nuxt/.nuxt/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/nuxt/.nuxt/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/nuxt/components/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/nuxt/components/Footer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/nuxt/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/nuxt/components/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/nuxt/pages/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/nuxt/pages/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/nuxt/nuxt.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/nuxt/nuxt.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/joayahiatene/baseauth/BaseauthApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/joayahiatene/baseauth/BaseauthApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/de/joayahiatene/baseauth/BaseauthApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/joayahiatene/baseauth/BaseauthApplicationTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +79,7 @@
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../jtoogle-nuxt-jwt-auth" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="project.propCompiler" />
@@ -123,7 +123,7 @@
       <updated>1602581308899</updated>
       <workItem from="1602581310641" duration="540000" />
       <workItem from="1602589982872" duration="1244000" />
-      <workItem from="1602920970317" duration="3881000" />
+      <workItem from="1602920970317" duration="7309000" />
     </task>
     <task id="LOCAL-00001" summary="Added Init-DB for Testing purposes">
       <created>1602597505943</created>
@@ -146,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602929262578</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Basic Version of design">
+      <created>1602942446681</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1602942446681</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,17 +189,22 @@
     <MESSAGE value="Added Init-DB for Testing purposes" />
     <MESSAGE value="Added Registration-component&#10;&#10;- added DTO for User operations refs #11&#10;- added ValidationResponse&#10;- fixed missing service-tag&#10;- added RegistrationController closes #3" />
     <MESSAGE value="Deletion of unneeded files and re-init of frontend&#10;&#10;- re-init of frontend because of creation errors&#10;- deletion of unneeded or duplicated files&#10;- first design-prototype (based on JTTracker)&#10;- changed target to server in nuxt&#10;- nuxt-config and package.json are now in the nuxt folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deletion of unneeded files and re-init of frontend&#10;&#10;- re-init of frontend because of creation errors&#10;- deletion of unneeded or duplicated files&#10;- first design-prototype (based on JTTracker)&#10;- changed target to server in nuxt&#10;- nuxt-config and package.json are now in the nuxt folder" />
+    <MESSAGE value="Basic Version of design" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic Version of design" />
   </component>
   <component name="WindowStateProjectService">
     <state x="768" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser" timestamp="1602590715961">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="768" y="272" width="374" height="569" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1602590715961" />
-    <state x="320" y="0" key="CommitChangelistDialog2" timestamp="1602929068444">
+    <state x="320" y="0" key="CommitChangelistDialog2" timestamp="1602942445069">
       <screen x="0" y="0" width="1475" height="789" />
     </state>
-    <state x="320" y="0" key="CommitChangelistDialog2/0.0.1475.789@0.0.1475.789" timestamp="1602929068444" />
+    <state x="320" y="0" key="CommitChangelistDialog2/0.0.1475.789@0.0.1475.789" timestamp="1602942445069" />
+    <state x="518" y="149" key="FileChooserDialogImpl" timestamp="1602944169367">
+      <screen x="0" y="0" width="1475" height="789" />
+    </state>
+    <state x="518" y="149" key="FileChooserDialogImpl/0.0.1475.789@0.0.1475.789" timestamp="1602944169367" />
     <state width="1431" height="199" key="GridCell.Tab.0.bottom" timestamp="1602791169691">
       <screen x="0" y="0" width="1475" height="789" />
     </state>
