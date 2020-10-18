@@ -1,4 +1,5 @@
 import Vue from 'vue'
+
 import Meta from 'vue-meta'
 import ClientOnly from 'vue-client-only'
 import NoSsr from 'vue-no-ssr'
@@ -10,6 +11,10 @@ import App from './App.js'
 import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 
 /* Plugins */
+
+import nuxt_plugin_plugin_126b8e00 from 'nuxt_plugin_plugin_126b8e00' // Source: .\\components\\plugin.js (mode: 'all')
+import nuxt_plugin_bootstrapvue_d24be55c from 'nuxt_plugin_bootstrapvue_d24be55c' // Source: .\\bootstrap-vue.js (mode: 'all')
+import nuxt_plugin_axios_29080223 from 'nuxt_plugin_axios_29080223' // Source: .\\axios.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -36,6 +41,13 @@ Vue.component('NChild', NuxtChild)
 // Component: <Nuxt>
 Vue.component(Nuxt.name, Nuxt)
 
+Object.defineProperty(Vue.prototype, '$nuxt', {
+  get() {
+    return this.$root.$options.$nuxt
+  },
+  configurable: true
+})
+
 Vue.use(Meta, {"keyName":"head","attribute":"data-n-head","ssrAttribute":"data-n-head-ssr","tagIDKeyName":"hid"})
 
 const defaultTransition = {"name":"page","mode":"out-in","appear":false,"appearClass":"appear","appearActiveClass":"appear-active","appearToClass":"appear-to"}
@@ -48,7 +60,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"meta":[],"link":[],"style":[],"script":[]},
+    head: {"title":"baseAuth","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
 
     router,
     nuxt: {
@@ -162,6 +174,18 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
+  if (typeof nuxt_plugin_plugin_126b8e00 === 'function') {
+    await nuxt_plugin_plugin_126b8e00(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_bootstrapvue_d24be55c === 'function') {
+    await nuxt_plugin_bootstrapvue_d24be55c(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_axios_29080223 === 'function') {
+    await nuxt_plugin_axios_29080223(app.context, inject)
+  }
+
   // Lock enablePreview in context
   if (process.static && process.client) {
     app.context.enablePreview = function () {
@@ -172,9 +196,13 @@ async function createApp(ssrContext, config = {}) {
   // If server-side, wait for async component to be resolved first
   if (process.server && ssrContext && ssrContext.url) {
     await new Promise((resolve, reject) => {
-      router.push(ssrContext.url, resolve, () => {
+      router.push(ssrContext.url, resolve, (err) => {
+        // https://github.com/vuejs/vue-router/blob/v3.4.3/src/util/errors.js
+        if (!err._isRouter) return reject(err)
+        if (err.type !== 2 /* NavigationFailureType.redirected */) return resolve()
+
         // navigated to a different route in router guard
-        const unregister = router.afterEach(async (to, from, next) => {
+        const unregister = router.afterEach(async (to, from) => {
           ssrContext.url = to.fullPath
           app.context.route = await getRouteData(to)
           app.context.params = to.params || {}

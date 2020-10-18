@@ -1,8 +1,24 @@
 <template>
   <div>
-    <Nuxt />
+    <Header />
+    <b-container class="contentContainer" fluid>
+      <nuxt />
+    </b-container>
+    <Footer />
   </div>
 </template>
+
+<script>
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
+
+export default {
+  components: {
+    Header,
+    Footer,
+  },
+}
+</script>
 
 <style>
 html {
@@ -15,11 +31,12 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  background-color: ghostwhite;
 }
 
 *,
-*::before,
-*::after {
+*:before,
+*:after {
   box-sizing: border-box;
   margin: 0;
 }
@@ -51,5 +68,13 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.contentContainer {
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: ghostwhite;
+  padding-bottom: 15vh;
+  padding-top: 10vh;
 }
 </style>

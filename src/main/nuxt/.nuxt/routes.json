@@ -1,8 +1,16 @@
 [
   {
+    "name": "Register",
+    "path": "/Register",
+    "component": "C:\\\\Users\\\\DesertGun\\\\Desktop\\\\Entwicklung\\\\BaseAuth\\\\BaseAuth\\\\src\\\\main\\\\nuxt\\\\pages\\\\Register.vue",
+    "chunkName": "pages/Register",
+    "_name": "_221a5fac"
+  },
+  {
     "name": "index",
     "path": "/",
-    "component": "/home/mokrane/BaseAuth/src/frontend/pages/index.vue",
-    "chunkName": "pages/index"
+    "component": "C:\\\\Users\\\\DesertGun\\\\Desktop\\\\Entwicklung\\\\BaseAuth\\\\BaseAuth\\\\src\\\\main\\\\nuxt\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_2beee839"
   }
 ]
