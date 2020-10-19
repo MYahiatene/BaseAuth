@@ -1,5 +1,5 @@
 export default function ({ store, redirect }) {
-  if (this.$store.login.state.authenticated) {
+  if (!this.$store.authenticated.state.authenticated) {
     return redirect('/Login')
   }
 }

@@ -25,8 +25,7 @@ public class LoginController {
 
     }
 
-    @PreAuthorize("hasAuthority('Admin')")
-    @GetMapping("/checkLogin")
+    @GetMapping("/login")
     String checkLogin() {
         return "User:" + userRepository.getOne("test");
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.validation.Valid;
 import java.util.List;
 
+@RequestMapping("/api")
 @Controller
 @CrossOrigin
 public class RegistrationController {
