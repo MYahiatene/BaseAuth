@@ -31,7 +31,7 @@ public class InitializeDatabase implements InitializingBean {
             userService.loadUserByUsername("test");
         } catch (UsernameNotFoundException e) {
             String pw =PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("password");
-            User user = new User("test", "ervin", "mo", pw, "email@domain", List.of("Admin"));
+            User user = new User("test", "ervin", "mo", pw,  List.of("Admin"),"email@domain");
             userRepository.save(user);
         }
     }

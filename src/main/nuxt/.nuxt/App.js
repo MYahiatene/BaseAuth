@@ -1,15 +1,15 @@
 import Vue from 'vue'
 
 import { getMatchedComponentsInstances, getChildrenComponentInstancesUsingFetch, promisify, globalHandleError, urlJoin, sanitizeComponent } from './utils'
-import NuxtError from './components/nuxt-error.vue'
+
 import NuxtLoading from './components/nuxt-loading.vue'
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
-import '..\\node_modules\\bootstrap\\dist\\css\\bootstrap.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.css'
 
-import '..\\node_modules\\bootstrap-vue\\dist\\bootstrap-vue.css'
+import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
 
-import _6f6c098b from '..\\layouts\\default.vue'
+import _6f6c098b from '../layouts/default.vue'
 
 const layouts = { "_default": sanitizeComponent(_6f6c098b) }
 
@@ -65,8 +65,7 @@ export default {
   },
   created () {
     // Add this.$nuxt in child instances
-    this.$root.$options.$nuxt = this
-
+    Vue.prototype.$nuxt = this
     if (process.client) {
       // add to window so we can listen when ready
       window.$nuxt = this
@@ -160,24 +159,15 @@ export default {
       }
       this.$loading.finish()
     },
+
     errorChanged () {
-      if (this.nuxt.err) {
-        if (this.$loading) {
-          if (this.$loading.fail) {
-            this.$loading.fail(this.nuxt.err)
-          }
-          if (this.$loading.finish) {
-            this.$loading.finish()
-          }
+      if (this.nuxt.err && this.$loading) {
+        if (this.$loading.fail) {
+          this.$loading.fail(this.nuxt.err)
         }
-
-        let errorLayout = (NuxtError.options || NuxtError).layout;
-
-        if (typeof errorLayout === 'function') {
-          errorLayout = errorLayout(this.context)
+        if (this.$loading.finish) {
+          this.$loading.finish()
         }
-
-        this.setLayout(errorLayout)
       }
     },
 

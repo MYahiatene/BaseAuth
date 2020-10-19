@@ -8,14 +8,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.List;
 
-
+@RequestMapping("/api")
 @Controller
 @CrossOrigin
-@PreAuthorize("hasRole('ROLE_ANONYMOUS')")
 public class RegistrationController {
 
     private final UserService userService;
@@ -36,8 +36,8 @@ public class RegistrationController {
             validationResponse.setValidated(false);
             validationResponse.setErrorMessage(error);
         } else {
-         //   userService.createUser(userDTO.getUsername(), userDTO.getPassword(), userDTO.getFirstname(),
-        //            userDTO.getLastname(), List.of("ROLE_USER"), userDTO.getEmail());
+            userService.createUser(userDTO.getUsername(), userDTO.getPassword(), userDTO.getFirstname(),
+                    userDTO.getLastname(), List.of("User"), userDTO.getEmail());
             validationResponse.setValidated(true);
             validationResponse.setSuccessMessage("Thank you for the registration!");
         }
