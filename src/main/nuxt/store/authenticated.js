@@ -34,7 +34,7 @@ export const actions = {
     const response = await this.$axios.post('http://localhost:8080/api/authenticate', credentials).catch(err => console.log(err))
     const token = response.data
     await commit('setAuthenticated', token, payload.username)
-    commit('setUsername', payload.username)
+     commit('setUsername', payload.username)
 
 
   }

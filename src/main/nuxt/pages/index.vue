@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <div>
-      <logo />
+      <logo/>
       <h5 class="title">
-        BaseAuth <br />
+        BaseAuth <br/>
         Basic Nuxt-Auth. for everything
       </h5>
       <h4 class="subtitle">
@@ -13,7 +13,7 @@
         <b-button nuxt-link to="/register" variant="primary">
           Register
         </b-button>
-        <b-button nuxt-link to="/login" variant="secondary"> Login </b-button>
+        <b-button nuxt-link to="/login" variant="secondary"> Login</b-button>
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@ export default {
 
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 75px;
