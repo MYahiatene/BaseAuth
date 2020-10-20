@@ -1,24 +1,25 @@
 package de.joayahiatene.baseauth.domain.user;
 
-import de.joayahiatene.baseauth.domain.password.RandomPasswordGenerator;
+import de.joayahiatene.baseauth.domain.password.PasswordResetToken;
+import de.joayahiatene.baseauth.domain.password.PasswordTokenRepository;
+import de.joayahiatene.baseauth.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordTokenRepository passwordTokenRepository;
 
     @Autowired
-    public UserServiceImpl(final UserRepository userRepository) {
+    public UserServiceImpl(final UserRepository userRepository, final PasswordTokenRepository passwordTokenRepository) {
         this.userRepository = userRepository;
-
+        this.passwordTokenRepository = passwordTokenRepository;
     }
 
   //  @Override
@@ -51,5 +52,12 @@ public class UserServiceImpl implements UserService {
         User user = new User(username,password,firstName,lastName,List.of("User"),email);
         userRepository.save(user);
         return user;
+    }
+
+    @Override
+    public void createPasswordResetTokenForUser(UserDTO userDTO, String token) {
+        User user = userRepository.findByUsername(userDTO.getUsername());
+        PasswordResetToken myToken = new PasswordResetToken(token, user);
+        passwordTokenRepository.save(myToken);
     }
 }
