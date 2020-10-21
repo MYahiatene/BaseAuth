@@ -20,18 +20,18 @@ public class InitializeDatabase implements InitializingBean {
     private final UserService userService;
 
     @Autowired
-    public InitializeDatabase(UserService userService,UserRepository userRepository) {
+    public InitializeDatabase(final UserService userService, final UserRepository userRepository) {
         this.userRepository = userRepository;
         this.userService = userService;
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         try {
             userService.loadUserByUsername("test");
         } catch (UsernameNotFoundException e) {
-            String pw =PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("password");
-            User user = new User("test", "ervin", "mo", pw,  List.of("Admin"),"email@domain");
+            final String pw = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("password");
+            final User user = new User("test", "ervin", "mo", pw, List.of("Admin"), "email@domain");
             userRepository.save(user);
         }
     }

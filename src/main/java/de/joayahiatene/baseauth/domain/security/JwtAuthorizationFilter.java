@@ -26,27 +26,12 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     private static final Logger LOG = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
     private final SecurityConstants securityConstants;
 
-    /**
-     * The constructor  uses the authentication manager from spring and our security constants.
-     *
-     * @param authenticationManager
-     * @param securityConstants
-     */
     public JwtAuthorizationFilter(final AuthenticationManager authenticationManager,
                                   final SecurityConstants securityConstants) {
         super(authenticationManager);
         this.securityConstants = securityConstants;
     }
 
-    /**
-     * This method uses the specified authorization filters.
-     *
-     * @param request     takes the request(usually client side).
-     * @param response    takes the response specific to above request.
-     * @param filterChain takes the filter chain object.
-     * @throws IOException      obligatory IOException.
-     * @throws ServletException ServletException in case of malfunctioning requests or responses.
-     */
     @Override
     protected void doFilterInternal(final HttpServletRequest request, final HttpServletResponse response,
                                     final FilterChain filterChain) throws IOException, ServletException {
