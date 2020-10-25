@@ -57,9 +57,9 @@ export default {
   },
   methods: {
     ...mapActions({ authAction: 'authenticated/checkLogin' }),
-    login(username, password) {
+    async login(username, password) {
       const obj = { username, password }
-      this.authAction(obj)
+      await this.authAction(obj)
     },
   },
 }

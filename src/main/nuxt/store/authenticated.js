@@ -36,7 +36,7 @@ export const actions = {
       .post('http://localhost:8080/api/authenticate', credentials)
       .catch()
     const token = response.data
-    await commit('setAuthenticated', token, payload.username)
+    commit('setAuthenticated', token)
     commit('setUsername', payload.username)
   },
 }
