@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class BaseauthApplicationTests {
 
     @Test
-    void contextLoads() {
+    /* default */void contextLoads() {
     }
 
 }
