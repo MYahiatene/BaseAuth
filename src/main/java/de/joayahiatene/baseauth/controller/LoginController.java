@@ -1,39 +1,53 @@
 package de.joayahiatene.baseauth.controller;
 
-import de.joayahiatene.baseauth.Exception.EntityNotFoundException;
-import de.joayahiatene.baseauth.domain.security.AuthenticationService;
-import de.joayahiatene.baseauth.domain.security.JwtTokenResponse;
-import de.joayahiatene.baseauth.dto.UserDTO;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
+import de.joayahiatene.baseauth.domain.security.JWTRequest;
+import de.joayahiatene.baseauth.domain.security.JWTToken;
+import de.joayahiatene.baseauth.domain.user.UserService;
+import de.joayahiatene.baseauth.response.JWTResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Objects;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 @CrossOrigin
 public class LoginController {
-    private final AuthenticationService authenticationService;
+    private final AuthenticationManager authenticationManager;
+    private final JWTToken jwtToken;
+    private final UserService userService;
 
-    public LoginController(AuthenticationService authenticationService) {
-        this.authenticationService = authenticationService;
+    public LoginController(AuthenticationManager authenticationManager, JWTToken jwtToken, UserService userService) {
+        this.authenticationManager = authenticationManager;
+        this.jwtToken = jwtToken;
+        this.userService = userService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity createCustomer(@RequestBody @Valid UserDTO userDTO) {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JWTRequest authenticationRequest) throws Exception {
+        System.out.print(authenticationRequest.getUsername());
+        System.out.print(authenticationRequest.getPassword());
+        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+        final UserDetails userDetails = userService.getUserByUsername(authenticationRequest.getUsername());
+        final String token = jwtToken.generateToken(userDetails);
+        return ResponseEntity.ok(new JWTResponse(token));
+    }
 
-        JwtTokenResponse jwtTokenResponse = authenticationService.generateJWTToken(userDTO.getUsername(), userDTO.getPassword());
-        if (Objects.equals(jwtTokenResponse.getStatus(), "found")) {
-            return new ResponseEntity<>(jwtTokenResponse, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("User not found! Please correct the input or register a new account!", HttpStatus.OK);
+    //TODO: Create better responses for the user, instead of 401's
+    private void authenticate(String username, String password) throws Exception {
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        } catch (DisabledException e) {
+            throw new Exception("USER_DISABLED", e);
+        } catch (BadCredentialsException e) {
+            throw new Exception("INVALID_CREDENTIALS", e);
         }
     }
 
-    @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity handleEntityNotFoundException(EntityNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
 }

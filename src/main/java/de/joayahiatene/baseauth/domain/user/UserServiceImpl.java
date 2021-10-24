@@ -5,6 +5,7 @@ import de.joayahiatene.baseauth.domain.password.PasswordTokenRepository;
 import de.joayahiatene.baseauth.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,13 +23,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) {
-        return userRepository.findById(username).orElse(null);
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+        return userRepository.findById(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User name " + username + " not found."));
+    }
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Override
     public User createUser(String username, String password, String firstName, String lastName, List<String> role, String email) {
-        User user = new User(username, password, firstName, lastName, List.of("User"), email);
+        final User user = new User(username, password, firstName, lastName, List.of("User"), email);
         return userRepository.save(user);
     }
 
@@ -37,5 +44,10 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(userDTO.getUsername());
         PasswordResetToken myToken = new PasswordResetToken(token, user);
         passwordTokenRepository.save(myToken);
+    }
+
+    @Override
+    public boolean userExists(String username) {
+        return userRepository.existsUserByUsername(username);
     }
 }
