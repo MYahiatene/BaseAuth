@@ -2,7 +2,6 @@ package de.joayahiatene.baseauth.domain.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,50 +10,53 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+@SuppressWarnings("SpringJavaAutowiringInspection")
 @Configuration
-@EnableWebSecurity
 @EnableAutoConfiguration
-@EnableConfigurationProperties(SecurityConstants.class)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableWebSecurity
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final SecurityConstants securityConstants;
+    private final JwtAuthenticationEntryPoint unauthorizedHandler;
+
+    private final JwtAuthenticationProvider jwtAuthenticationProvider;
 
 
-    /**
-     * The constructor takes our security constants(for jwt).
-     *
-     * @param securityConstants takes our security constants.
-     */
-    @Autowired
-    public SecurityConfig(final SecurityConstants securityConstants) {
-        this.securityConstants = securityConstants;
+    public WebSecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, JwtAuthenticationProvider jwtAuthenticationProvider) {
+        this.unauthorizedHandler = unauthorizedHandler;
+        this.jwtAuthenticationProvider = jwtAuthenticationProvider;
     }
 
-    /**
-     * This method configures our security access(csrf,cors,authorities,session management).
-     *
-     * @param http takes the http security object.
-     * @throws Exception throws a generic Exception.
-     */
+    @Autowired
+    public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) {
+        authenticationManagerBuilder.authenticationProvider(jwtAuthenticationProvider);
+    }
+
+    @Bean
+    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() {
+        return new JwtAuthenticationTokenFilter();
+    }
+
+
+
     @Override
-    protected void configure(final HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/api/**").hasAnyAuthority("Admin", "User")
-                .and()
-                .addFilter(new JwtAuthenticationFilter(authenticationManager(), securityConstants))
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(), securityConstants))
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        // this enables h2 console for debugging purposes(bad for security)
-        http.headers().frameOptions().disable();
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests()
+                .anyRequest().authenticated();
+
+        httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.headers().cacheControl();
     }
 
     /**
@@ -75,19 +77,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * This method sets our password encoder to delegating password encoder.
-     *
-     * @return returns the specific password encoder object.
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-
-    /**
      * This method sets our cors settings for different requests.
      *
-     * @return returns our cors config surce object.
+     * @return returns our cors config source object.
      */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

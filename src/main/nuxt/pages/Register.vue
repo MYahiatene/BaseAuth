@@ -163,7 +163,7 @@ export default {
     async register() {
       try {
         if (this.username && this.email && this.pw1) {
-          const response = await this.$axios.post('/api/register', {
+          const response = await this.$axios.post('/register', {
             username: this.username,
             email: this.email,
             firstname: this.firstname,

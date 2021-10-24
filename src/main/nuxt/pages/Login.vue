@@ -60,6 +60,7 @@ export default {
     async login(username, password) {
       const obj = { username, password }
       await this.authAction(obj)
+      this.$router.replace('/')
     },
   },
 }

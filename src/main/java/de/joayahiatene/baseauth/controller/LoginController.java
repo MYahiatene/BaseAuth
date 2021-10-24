@@ -1,25 +1,39 @@
 package de.joayahiatene.baseauth.controller;
 
-import de.joayahiatene.baseauth.domain.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import de.joayahiatene.baseauth.Exception.EntityNotFoundException;
+import de.joayahiatene.baseauth.domain.security.AuthenticationService;
+import de.joayahiatene.baseauth.domain.security.JwtTokenResponse;
+import de.joayahiatene.baseauth.dto.UserDTO;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
 
-@RequestMapping("/api")
+
 @RestController
 @CrossOrigin
 public class LoginController {
-    private final UserRepository userRepository;
+    private final AuthenticationService authenticationService;
 
-    @Autowired
-    public LoginController(final UserRepository userRepository) {
-        this.userRepository = userRepository;
-
+    public LoginController(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
     }
 
-    @GetMapping("/login")
-    public String checkLogin() {
-        return "User:" + userRepository.getOne("test");
+    @PostMapping("/login")
+    public ResponseEntity createCustomer(@RequestBody @Valid UserDTO userDTO) {
 
+        JwtTokenResponse jwtTokenResponse = authenticationService.generateJWTToken(userDTO.getUsername(), userDTO.getPassword());
+        if (Objects.equals(jwtTokenResponse.getStatus(), "found")) {
+            return new ResponseEntity<>(jwtTokenResponse, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("User not found! Please correct the input or register a new account!", HttpStatus.OK);
+        }
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity handleEntityNotFoundException(EntityNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

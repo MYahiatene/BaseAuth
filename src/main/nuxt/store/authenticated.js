@@ -19,8 +19,6 @@ export const mutations = {
         Authorization: 'Bearer ' + tokenString,
         username: state.username,
       }
-      this.$axios.defaults.headers.post['Content-Type'] =
-        'application/x-www-form-urlencoded'
     } else {
       state.authenticated = false
     }
@@ -29,11 +27,12 @@ export const mutations = {
 
 export const actions = {
   async checkLogin({ commit }, payload) {
-    const credentials = new URLSearchParams()
-    credentials.append('username', payload.username)
-    credentials.append('password', payload.password)
+    const credentials = {
+      username: payload.username,
+      password: payload.password,
+    }
     const response = await this.$axios
-      .post('http://localhost:8080/api/authenticate', credentials)
+      .post('http://localhost:8080/login', credentials)
       .catch()
     const token = response.data
     commit('setAuthenticated', token)

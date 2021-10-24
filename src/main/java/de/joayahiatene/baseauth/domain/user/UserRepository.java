@@ -2,5 +2,10 @@ package de.joayahiatene.baseauth.domain.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, String> {
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<User,String> {
+    User findByUsername(String username);
+
+    Optional<User> findOneByUsername(String username);
 }
