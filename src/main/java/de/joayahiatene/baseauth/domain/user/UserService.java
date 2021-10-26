@@ -17,4 +17,6 @@ public interface UserService extends UserDetailsService {
     UserDetails loadUserByUsername(String username);
 
     boolean userExists(String username);
+
+    void updateUserPassword(User user, String password);
 }

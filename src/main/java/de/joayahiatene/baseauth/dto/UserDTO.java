@@ -9,6 +9,10 @@ public class UserDTO {
 
     private String password;
 
+    private String oldPassword;
+
+    private String newPassword;
+
     private String firstname;
 
     private String lastname;
