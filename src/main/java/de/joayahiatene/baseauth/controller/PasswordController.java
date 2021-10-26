@@ -5,12 +5,12 @@ import de.joayahiatene.baseauth.domain.user.UserService;
 import de.joayahiatene.baseauth.dto.PasswordTokenDTO;
 import de.joayahiatene.baseauth.dto.UserDTO;
 import de.joayahiatene.baseauth.response.ValidationResponse;
+import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.UUID;
@@ -18,7 +18,6 @@ import java.util.UUID;
 @RequestMapping("/api")
 public class PasswordController {
 
-    private final String frontendPort = "3000";
     private final UserService userService;
     private final PasswordTokenValidationService passwordTokenValidationService;
 
@@ -86,6 +85,7 @@ public class PasswordController {
 
 
     private String constructResetTokenLink(String token, UserDTO userDTO) {
+        String frontendPort = "3000";
         return "http://" + InetAddress.getLoopbackAddress().getHostName() + ":" + frontendPort + "/reset?username=" + userDTO.getUsername() + "&token=" + token;
     }
 

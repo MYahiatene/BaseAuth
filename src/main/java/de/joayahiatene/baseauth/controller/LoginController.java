@@ -1,33 +1,54 @@
 package de.joayahiatene.baseauth.controller;
 
-import de.joayahiatene.baseauth.domain.user.User;
-import de.joayahiatene.baseauth.domain.user.UserRepository;
-import de.joayahiatene.baseauth.dto.UserDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import de.joayahiatene.baseauth.domain.security.JWTRequest;
+import de.joayahiatene.baseauth.domain.security.JWTToken;
+import de.joayahiatene.baseauth.domain.user.UserService;
+import de.joayahiatene.baseauth.response.JWTResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
-@RequestMapping("/api")
 @RestController
 @CrossOrigin
 public class LoginController {
-    private final UserRepository userRepository;
+    private final AuthenticationManager authenticationManager;
+    private final JWTToken jwtToken;
+    private final UserService userService;
+    Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    @Autowired
-    public LoginController(UserRepository userRepository) {
-        this.userRepository = userRepository;
-
+    public LoginController(AuthenticationManager authenticationManager, JWTToken jwtToken, UserService userService) {
+        this.authenticationManager = authenticationManager;
+        this.jwtToken = jwtToken;
+        this.userService = userService;
     }
 
-    @GetMapping("/login")
-    String checkLogin() {
-        return "User:" + userRepository.getOne("test");
+    @PostMapping("/login")
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JWTRequest authenticationRequest) throws Exception {
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 
+        } catch (DisabledException e) {
+            String error = "User not found!";
+            logger.warn(error);
+            return ResponseEntity.ok(new JWTResponse(null, error));
+        } catch (BadCredentialsException e) {
+            String error = "Username or Password incorrect!";
+            logger.warn(error);
+            return ResponseEntity.ok(new JWTResponse(null, error));
+        }
+        final UserDetails userDetails = userService.getUserByUsername(authenticationRequest.getUsername());
+        final String token = jwtToken.generateToken(userDetails);
+        return ResponseEntity.ok(new JWTResponse(token, null));
     }
+
 }

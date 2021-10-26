@@ -3,44 +3,65 @@ package de.joayahiatene.baseauth.controller;
 import de.joayahiatene.baseauth.domain.user.UserService;
 import de.joayahiatene.baseauth.dto.UserDTO;
 import de.joayahiatene.baseauth.response.ValidationResponse;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
+import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import javax.mail.MessagingException;
 import java.util.List;
 
-@RequestMapping("/api")
-@Controller
+
+@RestController
 @CrossOrigin
 public class RegistrationController {
 
+    private final PasswordEncoder passwordEncoder;
     private final UserService userService;
+    Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
-    public RegistrationController(UserService userService) {
+    public RegistrationController(PasswordEncoder passwordEncoder, UserService userService) {
+        this.passwordEncoder = passwordEncoder;
         this.userService = userService;
     }
 
     @PostMapping("/register")
-    public ValidationResponse userRegistration(@Valid UserDTO userDTO, BindingResult bindingResult) {
-        ValidationResponse validationResponse = new ValidationResponse();
+    public ValidationResponse registerUser(@RequestBody @Valid UserDTO userDTO, BindingResult bindingResult) throws MessagingException {
+        ValidationResponse response = new ValidationResponse();
         if (bindingResult.hasErrors()) {
             String error = bindingResult.getFieldErrors().toString();
-            validationResponse.setValidated(false);
-            validationResponse.setErrorMessage(error);
-        } else if (userService.loadUserByUsername(userDTO.getUsername()) != null) {
+            response.setValidated(false);
+            response.setErrorMessage(error);
+        } else if (userService.userExists(userDTO.getUsername())){
             String error = "You are already registered! Please log into your account!";
-            validationResponse.setValidated(false);
-            validationResponse.setErrorMessage(error);
+            response.setValidated(false);
+            response.setErrorMessage(error);
         } else {
-            userService.createUser(userDTO.getUsername(), userDTO.getPassword(), userDTO.getFirstname(),
-                    userDTO.getLastname(), List.of("User"), userDTO.getEmail());
-            validationResponse.setValidated(true);
-            validationResponse.setSuccessMessage("Thank you for the registration!");
+            createUserAccount(userDTO);
+            response.setValidated(true);
+            response.setSuccessMessage("Thank you for the registration!");
         }
-        return validationResponse;
+        return response;
+    }
+
+
+    private void createUserAccount(UserDTO userDTO) {
+
+        String username = userDTO.getUsername();
+        String firstname = userDTO.getFirstname();
+        String lastname = userDTO.getLastname();
+        String password = passwordEncoder.encode(userDTO.getPassword());
+        List<String> roles = List.of("User");
+        String email = userDTO.getEmail();
+        try {
+            userService.createUser(username, firstname, lastname, password, roles, email);
+        } catch (Exception e) {
+            logger.warn("Not possible to create new User");
+        }
     }
 }

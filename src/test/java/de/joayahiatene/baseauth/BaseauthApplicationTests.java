@@ -1,13 +1,13 @@
 package de.joayahiatene.baseauth;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+import org.junit.jupiter.api.Test;
+
 class BaseauthApplicationTests {
 
     @Test
-    void contextLoads() {
+    void test() {
     }
 
 }

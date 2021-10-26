@@ -1,13 +1,12 @@
 package de.joayahiatene.baseauth.start;
 
 import de.joayahiatene.baseauth.domain.user.User;
-import de.joayahiatene.baseauth.domain.user.UserRepository;
 import de.joayahiatene.baseauth.domain.user.UserService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,23 +15,23 @@ import java.util.List;
 @AutoConfigureBefore
 public class InitializeDatabase implements InitializingBean {
 
-    private final UserRepository userRepository;
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public InitializeDatabase(UserService userService,UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public InitializeDatabase(final UserService userService, final PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         try {
             userService.loadUserByUsername("test");
         } catch (UsernameNotFoundException e) {
-            String pw =PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("password");
-            User user = new User("test", "ervin", "mo", pw,  List.of("Admin"),"email@domain");
-            userRepository.save(user);
+            final String pw = passwordEncoder.encode("password");
+            final User user = new User("test", "ervin", "mo", pw, List.of("Admin"), "email@domain");
+            userService.createUser(user.getUsername(), user.getFirstname(), user.getLastname(), user.getPassword(), user.getRoles(), user.getEmail());
         }
     }
 }

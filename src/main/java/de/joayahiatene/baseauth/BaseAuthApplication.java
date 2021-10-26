@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableJpaRepositories
-public class BaseauthApplication {
+public class BaseAuthApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(BaseauthApplication.class, args);
+    public static void main(final String[] args) {
+        SpringApplication.run(BaseAuthApplication.class, args);
     }
 
 }
