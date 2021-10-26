@@ -4,6 +4,8 @@ import de.joayahiatene.baseauth.domain.security.JWTRequest;
 import de.joayahiatene.baseauth.domain.security.JWTToken;
 import de.joayahiatene.baseauth.domain.user.UserService;
 import de.joayahiatene.baseauth.response.JWTResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,6 +24,7 @@ public class LoginController {
     private final AuthenticationManager authenticationManager;
     private final JWTToken jwtToken;
     private final UserService userService;
+    Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     public LoginController(AuthenticationManager authenticationManager, JWTToken jwtToken, UserService userService) {
         this.authenticationManager = authenticationManager;
@@ -31,23 +34,21 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JWTRequest authenticationRequest) throws Exception {
-        System.out.print(authenticationRequest.getUsername());
-        System.out.print(authenticationRequest.getPassword());
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
+
+        } catch (DisabledException e) {
+            String error = "User not found!";
+            logger.warn(error);
+            return ResponseEntity.ok(new JWTResponse(null, error));
+        } catch (BadCredentialsException e) {
+            String error = "Username or Password incorrect!";
+            logger.warn(error);
+            return ResponseEntity.ok(new JWTResponse(null, error));
+        }
         final UserDetails userDetails = userService.getUserByUsername(authenticationRequest.getUsername());
         final String token = jwtToken.generateToken(userDetails);
-        return ResponseEntity.ok(new JWTResponse(token));
-    }
-
-    //TODO: Create better responses for the user, instead of 401's
-    private void authenticate(String username, String password) throws Exception {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        } catch (DisabledException e) {
-            throw new Exception("USER_DISABLED", e);
-        } catch (BadCredentialsException e) {
-            throw new Exception("INVALID_CREDENTIALS", e);
-        }
+        return ResponseEntity.ok(new JWTResponse(token, null));
     }
 
 }

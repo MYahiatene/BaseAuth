@@ -2,6 +2,7 @@ package de.joayahiatene.baseauth.domain.security;
 
 import de.joayahiatene.baseauth.domain.user.UserService;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,6 +43,8 @@ public class JWTRequestFilter extends OncePerRequestFilter {
         logger.warn("Unable to get JWT Token");
       } catch (ExpiredJwtException e) {
         logger.warn("JWT Token has expired");
+      } catch (MalformedJwtException e) {
+        logger.warn("Error creating / retrieving JWT Token");
       }
     } else {
       logger.warn("JWT Token does not begin with Bearer String");
