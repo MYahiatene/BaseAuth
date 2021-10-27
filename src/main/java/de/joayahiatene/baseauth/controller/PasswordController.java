@@ -7,15 +7,13 @@ import de.joayahiatene.baseauth.dto.UserDTO;
 import de.joayahiatene.baseauth.response.ValidationResponse;
 import jakarta.validation.Valid;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.UUID;
-
-@RequestMapping("/api")
+@RestController
+@CrossOrigin
 public class PasswordController {
 
     private final UserService userService;

@@ -31,10 +31,13 @@ export const actions = {
       username: payload.username,
       password: payload.password,
     }
+    // this.$axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
     const response = await this.$axios
-      .post('http://localhost:8080/login', credentials)
+      .post('http://localhost:8080/api/login', credentials)
       .catch()
     const token = response.data
+    console.log(token)
+
     commit('setAuthenticated', token)
     commit('setUsername', payload.username)
   },

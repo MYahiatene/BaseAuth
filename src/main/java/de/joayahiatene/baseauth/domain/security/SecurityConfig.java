@@ -48,7 +48,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(List.of("*"));
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/**", configuration);
+        source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 
