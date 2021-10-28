@@ -30,7 +30,7 @@ public class InitializeDatabase implements InitializingBean {
             userService.loadUserByUsername("test");
         } catch (UsernameNotFoundException e) {
             final String pw = passwordEncoder.encode("password");
-            final User user = new User("test", "ervin", "mo", pw, List.of("Admin"), "email@domain");
+            final User user = new User("test", "ervin", "mo", pw, List.of("Admin","User"), "email@domain");
             userService.createUser(user.getUsername(), user.getFirstname(), user.getLastname(), user.getPassword(), user.getRoles(), user.getEmail());
         }
     }

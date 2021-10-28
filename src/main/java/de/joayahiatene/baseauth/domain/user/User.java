@@ -43,6 +43,7 @@ public class User implements UserDetails {
         this.password = password;
         this.email = email;
         this.roles.addAll(role);
+        System.out.println(roles);
     }
 
     @Override

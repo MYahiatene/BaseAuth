@@ -13,10 +13,11 @@ public interface UserService extends UserDetailsService {
                     final String lastName, final List<String> role, final String email);
 
     void createPasswordResetTokenForUser(UserDTO userDTO, String token);
-
     UserDetails loadUserByUsername(String username);
 
     boolean userExists(String username);
 
     void updateUserPassword(User user, String password);
+
+    List<String> getUserRole(String username);
 }

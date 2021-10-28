@@ -2,6 +2,7 @@ export const state = () => ({
   authenticated: false,
   token: null,
   username: null,
+  isAdmin: false,
 })
 
 export const mutations = {
@@ -14,7 +15,7 @@ export const mutations = {
       state.authenticated = true
       localStorage.setItem('user-token', token)
       const tokenString = localStorage.getItem('user-token')
-      this.$axios.defaults.baseURL = 'http://localhost:8080/api'
+      this.$axios.defaults.baseURL = 'http://127.0.0.1:8080/api'
       this.$axios.defaults.headers.common = {
         Authorization: 'Bearer ' + tokenString,
         username: state.username,
@@ -22,6 +23,10 @@ export const mutations = {
     } else {
       state.authenticated = false
     }
+  },
+  setRole(state, roles) {
+    console.log(roles.includes('Admin'))
+    state.isAdmin = roles.includes('Admin')
   },
 }
 
@@ -35,11 +40,24 @@ export const actions = {
       .post('http://localhost:8080/login', credentials)
       .catch()
     const token = response.data
+    console.log(token)
+
     commit('setAuthenticated', token)
     commit('setUsername', payload.username)
+    console.log(payload.username)
+    const roles = await this.$axios
+      .post('http://localhost:8080/api/checkRole', {
+        username: payload.username,
+      })
+      .catch()
+    commit('setRole', roles.data)
   },
 }
+
 export const getters = {
+  getAdmin: (state) => state.isAdmin,
   isLoggedIn: (state) => !!state.token,
   token: (state) => state.token,
 }
+
+export const setters = {}

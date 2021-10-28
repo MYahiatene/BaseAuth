@@ -59,7 +59,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions({ authAction: 'authenticated/checkLogin' }),
+    ...mapActions({
+      authAction: 'authenticated/checkLogin',
+    }),
     async login(username, password) {
       const obj = { username, password }
       await this.authAction(obj)

@@ -5,6 +5,9 @@
         <b-navbar class="navBar fixed-top" type="dark">
           <b-navbar-nav>
             <b-nav-item nuxt-link to="/"> Home </b-nav-item>
+            <b-nav-item-dropdown right text="Admin" v-if="isAdmin">
+            </b-nav-item-dropdown>
+
             <b-nav-item-dropdown right text="Modules">
               <b-dropdown-item nuxt-link to="/dashboard">
                 Main-Dashboard
@@ -49,6 +52,14 @@
 <script>
 export default {
   name: 'Header',
+  data() {
+    return {}
+  },
+  computed: {
+    isAdmin() {
+      return this.$store.getters['authenticated/getAdmin']
+    },
+  },
 }
 </script>
 

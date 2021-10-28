@@ -21,6 +21,7 @@ import java.net.InetAddress;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class PasswordController {
 

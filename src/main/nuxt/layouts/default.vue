@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header />
+
     <b-container class="contentContainer" fluid>
       <nuxt />
     </b-container>
