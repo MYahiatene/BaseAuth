@@ -36,6 +36,9 @@
               required
               type="password"
             ></b-form-input>
+            <b-button variant="danger" @click="submitRecovery()">
+              I forgot my Password!
+            </b-button>
           </b-form-group>
           <b-btn @click="login(username, password)">Login</b-btn>
         </b-col>
@@ -61,6 +64,9 @@ export default {
       const obj = { username, password }
       await this.authAction(obj)
       this.$router.replace('/')
+    },
+    submitRecovery() {
+      this.$router.push('/recovery')
     },
   },
 }

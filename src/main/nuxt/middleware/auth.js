@@ -1,5 +1,5 @@
 export default function ({ store, redirect }) {
-  if (!store.state.authenticated.authenticated) {
+  if (!store.state.authenticated.token) {
     return redirect('/Login')
   }
 }

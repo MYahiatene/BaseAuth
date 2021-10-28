@@ -14,7 +14,7 @@ export const mutations = {
       state.authenticated = true
       localStorage.setItem('user-token', token)
       const tokenString = localStorage.getItem('user-token')
-      this.$axios.defaults.baseURL = 'http://127.0.0.1:8080/api'
+      this.$axios.defaults.baseURL = 'http://localhost:8080/api'
       this.$axios.defaults.headers.common = {
         Authorization: 'Bearer ' + tokenString,
         username: state.username,
@@ -39,7 +39,7 @@ export const actions = {
     commit('setUsername', payload.username)
   },
 }
-
-export const getters = {}
-
-export const setters = {}
+export const getters = {
+  isLoggedIn: (state) => !!state.token,
+  token: (state) => state.token,
+}
