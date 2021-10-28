@@ -14,6 +14,7 @@ import java.net.UnknownHostException;
 import java.util.UUID;
 @RestController
 @CrossOrigin
+@RequestMapping("/api")
 public class PasswordController {
 
     private final UserService userService;

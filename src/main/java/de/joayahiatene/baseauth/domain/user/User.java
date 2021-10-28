@@ -1,6 +1,7 @@
 package de.joayahiatene.baseauth.domain.user;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -43,6 +44,7 @@ public class User implements UserDetails {
         this.password = password;
         this.email = email;
         this.roles.addAll(role);
+        System.out.println(roles);
     }
 
     @Override

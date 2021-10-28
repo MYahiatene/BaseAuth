@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(String username, String password, String firstName, String lastName, List<String> role, String email) {
-        final User user = new User(username, password, firstName, lastName, List.of("User"), email);
+        final User user = new User(username, password, firstName, lastName, role, email);
         return userRepository.save(user);
     }
 
@@ -49,5 +49,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean userExists(String username) {
         return userRepository.existsUserByUsername(username);
+    }
+
+    @Override
+    public List<String> getUserRole(String username) {
+        User user = userRepository.getById(username);
+        return userRepository.findById(username).orElseThrow().getRoles();
     }
 }

@@ -2,6 +2,7 @@ export const state = () => ({
   authenticated: false,
   token: null,
   username: null,
+  isAdmin: false,
 })
 
 export const mutations = {
@@ -23,6 +24,10 @@ export const mutations = {
       state.authenticated = false
     }
   },
+  setRole(state, roles) {
+    console.log(roles.includes('Admin'))
+    state.isAdmin = roles.includes('Admin')
+  },
 }
 
 export const actions = {
@@ -31,7 +36,6 @@ export const actions = {
       username: payload.username,
       password: payload.password,
     }
-    // this.$axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
     const response = await this.$axios
       .post('http://localhost:8080/api/login', credentials)
       .catch()
@@ -40,9 +44,18 @@ export const actions = {
 
     commit('setAuthenticated', token)
     commit('setUsername', payload.username)
+    console.log(payload.username)
+    const roles = await this.$axios
+      .post('http://localhost:8080/api/checkRole', {
+        username: payload.username,
+      })
+      .catch()
+    commit('setRole', roles.data)
   },
 }
 
-export const getters = {}
+export const getters = {
+  getAdmin: (state) => state.isAdmin,
+}
 
 export const setters = {}
