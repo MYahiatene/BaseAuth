@@ -28,25 +28,65 @@
               />
             </b-form-group>
             <b-form-group
-              id="accountNameFormGroup"
-              description="With the following name you will be visible for other users. The choice is up to you. Default is your username."
-              label="Account name:"
-              label-for="accountName"
+              id="firstNameFormGroup"
+              label="Firstname:"
+              label-for="first"
             >
               <b-form-input
-                id="accountName"
-                v-model="accountName"
+                id="firstName"
+                v-model="firstName"
                 placeholder="None"
                 type="text"
               />
               <b-form-invalid-feedback :state="validationaccountNameChange">
-                Your global name cannot be empty!
+                Your first name cannot be empty!
               </b-form-invalid-feedback>
               <b-form-invalid-feedback :state="validationaccountNameNew">
                 No changes detected !
               </b-form-invalid-feedback>
               <b-form-valid-feedback :state="validationaccountNameChange" />
             </b-form-group>
+
+            <b-form-group
+              id="lastNameFormGroup"
+              label="Lastname:"
+              label-for="lastName"
+            >
+              <b-form-input
+                id="lastName"
+                v-model="lastName"
+                placeholder="None"
+                type="text"
+              />
+              <b-form-invalid-feedback :state="validationaccountNameChange">
+                Your last name cannot be empty!
+              </b-form-invalid-feedback>
+              <b-form-invalid-feedback :state="validationaccountNameNew">
+                No changes detected !
+              </b-form-invalid-feedback>
+              <b-form-valid-feedback :state="validationaccountNameChange" />
+            </b-form-group>
+
+            <b-form-group
+              id="emailFormGroup"
+              label="Email:"
+              label-for="accountEmail"
+            >
+              <b-form-input
+                id="accountEmail"
+                v-model="email"
+                placeholder="None"
+                type="email"
+              />
+              <b-form-invalid-feedback :state="validationaccountNameChange">
+                Your email cannot be empty!
+              </b-form-invalid-feedback>
+              <b-form-invalid-feedback :state="validationaccountNameNew">
+                No changes detected !
+              </b-form-invalid-feedback>
+              <b-form-valid-feedback :state="validationaccountNameChange" />
+            </b-form-group>
+
             <b-form-group
               id="avatarFormGroup"
               description="Your personal Accout-Avatar"
@@ -55,28 +95,11 @@
             >
               <img :src="'https://gravatar.com/avatar/${hash}?d=identicon'" />
             </b-form-group>
-            <b-form-group
-              id="passwordFormGroup"
-              description="You will receive a password-reset link to the adress (username) provided above"
-              label="Password:"
-              label-for="password"
-            >
-              <b-form-input
-                id="password"
-                v-model="dummyPassword"
-                disabled
-                type="password"
-              />
-            </b-form-group>
             <b-button variant="secondary" @click="changePassword">
               Change current password
             </b-button>
             <div
-              v-if="
-                validationaccountNameChange &&
-                this.accountName !== this.username &&
-                validationaccountNameNew
-              "
+              v-if="validationAccountChange && validationAccountNew"
               class="pt-2"
             >
               <b-button variant="success" @click="updateProfile">
@@ -101,35 +124,49 @@ export default {
   middleware: 'auth',
   asyncData() {
     return {
-      username: null,
-      accountName: '',
-      initaccountName: '',
-      dummyPassword: 'placeHolderPasswordForRenderingPurposes',
+      username: '',
+      initfirstname: '',
+      initlastname: '',
+      initemail: '',
+      email: '',
+      firstname: '',
+      lastname: '',
       changed: false,
       updated: false,
       hash: null,
     }
   },
   computed: {
-    validationaccountNameChange() {
-      return this.accountName.length > 0
+    validationAccountNew() {
+      return (
+        this.firstname.length !== 0 ||
+        this.lastname.length !== 0 ||
+        this.email.length !== 0
+      )
     },
-    validationaccountNameNew() {
-      return this.accountName !== this.initaccountName
+    validationAccountChange() {
+      return (
+        this.firstname !== this.initfirstname ||
+        this.lastname !== this.initlastname ||
+        this.email !== this.initemail
+      )
     },
   },
   async mounted() {
     try {
       const response = await this.$axios.get('user/profile')
       this.username = response.data.username
-      if (response.data.accountName) {
-        this.accountName = response.data.accountName
-        this.initaccountName = this.accountName
-        this.hash = response.data.hash
-      } else {
-        this.accountName = this.username
-        this.initaccountName = this.accountName
-      }
+
+      this.firstname = response.data.firstname
+      this.initfirstname = this.firstname
+
+      this.lastname = response.data.lastname
+      this.initlastname = this.lastname
+
+      this.email = response.data.email
+      this.initemail = this.email
+
+      this.hash = response.data.hash
     } catch (e) {
       alert(e.toString())
     }
@@ -139,7 +176,9 @@ export default {
       try {
         const response = await this.$axios.put('user/profile/update', {
           username: this.username,
-          accountName: this.accountName,
+          firstname: this.firstname,
+          lastname: this.lastname,
+          email: this.email,
         })
         if (response.data.validated === true) {
           this.updated = true
