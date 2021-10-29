@@ -73,7 +73,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/login", "/api/register", "/api/checkRole").permitAll()
+                .antMatchers("/api/login", "/api/register", "/api/checkRole", "/api/user/password/reset").permitAll()
                 .antMatchers("/api/**").hasAnyAuthority("Admin", "User")
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)

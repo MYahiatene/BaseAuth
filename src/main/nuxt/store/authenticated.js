@@ -15,7 +15,7 @@ export const mutations = {
       state.authenticated = true
       localStorage.setItem('user-token', token)
       const tokenString = localStorage.getItem('user-token')
-      this.$axios.defaults.baseURL = 'http://127.0.0.1:8080/api'
+      this.$axios.defaults.baseURL = 'http://localhost:8080/api'
       this.$axios.defaults.headers.common = {
         Authorization: 'Bearer ' + tokenString,
         username: state.username,
@@ -37,7 +37,7 @@ export const actions = {
       password: payload.password,
     }
     const response = await this.$axios
-      .post('http://localhost:8080/login', credentials)
+      .post('http://localhost:8080/api/login', credentials)
       .catch()
     const token = response.data
     console.log(token)
@@ -56,7 +56,7 @@ export const actions = {
 
 export const getters = {
   getAdmin: (state) => state.isAdmin,
-  isLoggedIn: (state) => !!state.token,
+  isLoggedIn: (state) => !!state.authenticated,
   token: (state) => state.token,
 }
 

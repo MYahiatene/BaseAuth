@@ -9,22 +9,38 @@
       <h4 class="subtitle">
         Welcome and thank you for your interest in our setup !
       </h4>
-      <div class="links">
-        <b-button nuxt-link to="/register" variant="primary">
-          Register
-        </b-button>
-        <b-button nuxt-link to="/login" variant="secondary"> Login</b-button>
+      <div v-if="!isLoggedIn">
+        <div class="links">
+          <b-button nuxt-link to="/register" variant="primary">
+            Register
+          </b-button>
+          <b-button nuxt-link to="/login" variant="secondary"> Login</b-button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Logo from '~/components/Logo.vue'
 
 export default {
   components: {
     Logo,
+  },
+  asyncData() {
+    return {
+      isLoggedIn: false,
+    }
+  },
+  mounted() {
+    if (this.getAccountStatus()) {
+      this.isLoggedIn = true
+    }
+  },
+  methods: {
+    ...mapGetters({ getAccountStatus: 'authenticated/isLoggedIn' }),
   },
 }
 </script>

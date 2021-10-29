@@ -5,7 +5,7 @@
         <b-navbar class="navBar fixed-top" type="dark">
           <b-navbar-nav>
             <b-nav-item nuxt-link to="/"> Home </b-nav-item>
-            <b-nav-item-dropdown right text="Admin" v-if="isAdmin">
+            <b-nav-item-dropdown v-if="isAdmin" right text="Admin">
             </b-nav-item-dropdown>
 
             <b-nav-item-dropdown right text="Modules">
@@ -17,11 +17,13 @@
             <b-nav-item nuxt-link to="/help"> Help </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
-            <!--div v-if="$store.state.auth.jwtToken">
+            <div v-if="$store.state.authenticated.authenticated">
               <b-row>
                 <b-col>
                   <b-avatar button nuxt-link to="/profile">
-                    <img :src="'https://gravatar.com/avatar/${hash}?d=identicon'">
+                    <img
+                      :src="'https://gravatar.com/avatar/${hash}?d=identicon'"
+                    />
                   </b-avatar>
                 </b-col>
                 <b-col>
@@ -29,10 +31,7 @@
                     <template v-slot:button-content>
                       <em>User</em>
                     </template>
-                    <b-dropdown-item
-                      nuxt-link
-                      to="/profile"
-                    >
+                    <b-dropdown-item nuxt-link to="/profile">
                       Profile
                     </b-dropdown-item>
                     <b-dropdown-item @click="logout">
@@ -41,7 +40,7 @@
                   </b-nav-item-dropdown>
                 </b-col>
               </b-row>
-            </div-->
+            </div>
           </b-navbar-nav>
         </b-navbar>
       </div>
@@ -58,6 +57,14 @@ export default {
   computed: {
     isAdmin() {
       return this.$store.getters['authenticated/getAdmin']
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout')
+    },
+    toProfile() {
+      this.$router.push('/profile')
     },
   },
 }

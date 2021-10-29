@@ -2,6 +2,7 @@ package de.joayahiatene.baseauth.domain.user;
 
 import de.joayahiatene.baseauth.domain.password.PasswordResetToken;
 import de.joayahiatene.baseauth.domain.password.PasswordTokenRepository;
+import de.joayahiatene.baseauth.domain.profile.UserProfileGravatarHash;
 import de.joayahiatene.baseauth.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,7 +36,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(String username, String password, String firstName, String lastName, List<String> role, String email) {
-        final User user = new User(username, password, firstName, lastName, role, email);
+        String hash = UserProfileGravatarHash.md5Hex(username);
+        final User user = new User(username, password, firstName, lastName, role, email, hash);
         return userRepository.save(user);
     }
 

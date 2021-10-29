@@ -36,7 +36,7 @@ public class User implements UserDetails {
     private List<String> roles = new ArrayList<>();
 
     public User(final String username, final String firstname, final String lastname,
-                final String password, final List<String> role, final String email) {
+                final String password, final List<String> role, final String email, String hash) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
