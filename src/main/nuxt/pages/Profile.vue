@@ -34,7 +34,7 @@
             >
               <b-form-input
                 id="firstName"
-                v-model="firstName"
+                v-model="firstname"
                 placeholder="None"
                 type="text"
               />
@@ -54,7 +54,7 @@
             >
               <b-form-input
                 id="lastName"
-                v-model="lastName"
+                v-model="lastname"
                 placeholder="None"
                 type="text"
               />

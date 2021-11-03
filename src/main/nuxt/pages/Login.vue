@@ -40,7 +40,7 @@
               I forgot my Password!
             </b-button>
           </b-form-group>
-          <b-btn @click="login(username, password)">Login</b-btn>
+          <b-btn @click="login()">Login</b-btn>
         </b-col>
       </b-row>
     </b-form>
@@ -48,24 +48,30 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 export default {
   name: 'Login',
   data() {
     return {
-      username: '',
-      password: '',
+      username: null,
+      password: null,
     }
   },
   methods: {
-    ...mapActions({
-      authAction: 'authenticated/checkLogin',
-    }),
-    async login(username, password) {
-      const obj = { username, password }
-      await this.authAction(obj)
-      this.$router.replace('/')
+    async login() {
+      try {
+        const response = await this.$axios.post('/api/login', {
+          username: this.username,
+          password: this.password,
+        })
+        if (response.data.jwtToken) {
+          const auth = { jwtToken: response.data.jwtToken }
+          this.$store.dispatch('authenticated/checkLogin', auth)
+          this.$store.dispatch('authenticated/checkRole')
+          this.$router.replace('/')
+        }
+      } catch (e) {
+        alert(e.toString())
+      }
     },
     submitRecovery() {
       this.$router.push('/recovery')
