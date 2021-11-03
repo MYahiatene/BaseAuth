@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch('auth/logout')
+      this.$store.dispatch('authenticated/logout')
     },
     toProfile() {
       this.$router.push('/profile')

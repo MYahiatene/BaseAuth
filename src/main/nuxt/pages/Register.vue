@@ -119,7 +119,7 @@
         <div v-if="responseSuccess" class="pt-2" style="text-align: center">
           <b-alert dismissible show variant="success">
             {{ responseMassage }}
-            <b-button class="mt-2" nuxt-link to="/login">
+            <b-button class="mt-2" variant="success" nuxt-link to="/login">
               Now you can login and start tracking !
             </b-button>
           </b-alert>
@@ -162,8 +162,14 @@ export default {
   methods: {
     async register() {
       try {
-        if (this.username && this.email && this.pw1) {
-          const response = await this.$axios.post('/register', {
+        if (
+          this.username &&
+          this.email &&
+          this.pw1 &&
+          this.statusTerms === 'accepted' &&
+          this.statusPrivacy === 'accepted'
+        ) {
+          const response = await this.$axios.post('api/register', {
             username: this.username,
             email: this.email,
             firstname: this.firstname,

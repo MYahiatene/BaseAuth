@@ -20,6 +20,11 @@ export const mutations = {
   setRole(state, roles) {
     state.isAdmin = roles.includes('Admin')
   },
+  logout(state) {
+    state.token = null
+    state.authenticated = false
+    state.isAdmin = false
+  },
 }
 
 export const actions = {
@@ -31,6 +36,11 @@ export const actions = {
   async checkRole({ commit }) {
     const roles = await this.$axios.get('/checkRole').catch()
     commit('setRole', roles.data)
+  },
+  logout({ commit }) {
+    commit('logout')
+    delete this.$axios.defaults.headers.common.Authorization
+    location.reload()
   },
 }
 

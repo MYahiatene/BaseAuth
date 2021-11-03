@@ -20,4 +20,6 @@ public interface UserService extends UserDetailsService {
     void updateUserPassword(User user, String password);
 
     List<String> getUserRole(String username);
+
+    void deleteUser(String username);
 }

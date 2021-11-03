@@ -16,7 +16,7 @@
           <b-form>
             <b-form-group
               id="usernameFormGroup"
-              description="Keep in mind, that your Username is your contact adress!"
+              description="Keep in mind, your username is unique and cannot be changed !"
               label="Username:"
               label-for="username"
             >
@@ -89,14 +89,17 @@
 
             <b-form-group
               id="avatarFormGroup"
-              description="Your personal Accout-Avatar"
+              description="Your personal Account-Avatar"
               label="Avatar:"
               label-for="avatar"
             >
               <img :src="'https://gravatar.com/avatar/${hash}?d=identicon'" />
             </b-form-group>
             <b-button variant="secondary" @click="changePassword">
-              Change current password
+              Change my password !
+            </b-button>
+            <b-button variant="danger" @click="deleteAccount">
+              Delete my account !
             </b-button>
             <div
               v-if="validationAccountChange && validationAccountNew"
@@ -189,6 +192,9 @@ export default {
     },
     changePassword() {
       this.$router.push('/passwordChange')
+    },
+    deleteAccount() {
+      this.$router.push('/accountDelete')
     },
   },
 }

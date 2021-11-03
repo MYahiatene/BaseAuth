@@ -61,7 +61,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<String> getUserRole(String username) {
-        User user = userRepository.getById(username);
         return userRepository.findById(username).orElseThrow().getRoles();
+    }
+
+    @Override
+    public void deleteUser(String username) {
+        User user = userRepository.getById(username);
+        userRepository.delete(user);
     }
 }

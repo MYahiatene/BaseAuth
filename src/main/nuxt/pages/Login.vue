@@ -1,9 +1,9 @@
 <template>
-  <b-container class="regContainer">
+  <b-container class="loginContainer">
     <b-form>
       <b-row>
-        <b-col cols="1"></b-col>
-        <b-col cols="11">
+        <b-col></b-col>
+        <b-col cols="12">
           <h4>Login</h4>
 
           <b-form-group
@@ -20,10 +20,11 @@
             ></b-form-input>
           </b-form-group>
         </b-col>
+        <b-col></b-col>
       </b-row>
       <b-row>
-        <b-col cols="1"></b-col>
-        <b-col cols="11">
+        <b-col></b-col>
+        <b-col cols="12">
           <b-form-group
             id="input-group-password"
             label="Password:"
@@ -36,12 +37,13 @@
               required
               type="password"
             ></b-form-input>
-            <b-button variant="danger" @click="submitRecovery()">
+            <b-button class="mt-3" variant="danger" @click="submitRecovery()">
               I forgot my Password!
             </b-button>
           </b-form-group>
           <b-btn @click="login()">Login</b-btn>
         </b-col>
+        <b-col></b-col>
       </b-row>
     </b-form>
   </b-container>
