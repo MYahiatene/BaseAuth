@@ -42,6 +42,11 @@
             </b-button>
           </b-form-group>
           <b-btn @click="login()">Login</b-btn>
+          <div v-if="responseMessage" class="pt-2" style="text-align: center">
+            <b-alert dismissible show variant="danger">
+              {{ responseMessage }}
+            </b-alert>
+          </div>
         </b-col>
         <b-col></b-col>
       </b-row>
@@ -56,6 +61,7 @@ export default {
     return {
       username: null,
       password: null,
+      responseMessage: null,
     }
   },
   methods: {
@@ -70,6 +76,8 @@ export default {
           this.$store.dispatch('authenticated/checkLogin', auth)
           this.$store.dispatch('authenticated/checkRole')
           this.$router.replace('/')
+        } else if (response.data.error) {
+          this.responseMessage = response.data.error
         }
       } catch (e) {
         alert(e.toString())

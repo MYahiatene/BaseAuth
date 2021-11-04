@@ -177,7 +177,7 @@ export default {
   methods: {
     async updateProfile() {
       try {
-        const response = await this.$axios.put('user/profile/update', {
+        const response = await this.$axios.put('user/update', {
           username: this.username,
           firstname: this.firstname,
           lastname: this.lastname,

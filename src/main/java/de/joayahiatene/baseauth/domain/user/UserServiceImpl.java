@@ -69,4 +69,12 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.getById(username);
         userRepository.delete(user);
     }
+
+    @Override
+    public void updateUserProfile(User user, UserDTO userDTO) {
+        user.setFirstname(userDTO.getFirstname());
+        user.setLastname(userDTO.getLastname());
+        user.setEmail(userDTO.getEmail());
+        userRepository.save(user);
+    }
 }

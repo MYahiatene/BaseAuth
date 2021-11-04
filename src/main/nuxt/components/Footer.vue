@@ -6,7 +6,9 @@
         <b-col>
           <h5>Pages</h5>
           <b-nav type="dark" vertical>
-            <b-nav-item nuxt-link to="/dashboard"> Dashboard </b-nav-item>
+            <div v-if="$store.state.authenticated.authenticated">
+              <b-nav-item nuxt-link to="/dashboard"> Dashboard </b-nav-item>
+            </div>
             <b-nav-item nuxt-link to="/about"> About </b-nav-item>
             <b-nav-item nuxt-link to="/help"> Help </b-nav-item>
           </b-nav>

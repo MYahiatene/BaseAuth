@@ -22,4 +22,6 @@ public interface UserService extends UserDetailsService {
     List<String> getUserRole(String username);
 
     void deleteUser(String username);
+
+    void updateUserProfile(User user, UserDTO userDTO);
 }
