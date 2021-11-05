@@ -1,5 +1,6 @@
 package de.joayahiatene.baseauth.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,9 +29,12 @@ public class User implements UserDetails {
 
     private String lastname;
 
+    @JsonIgnore
     private String password;
 
     private String email;
+
+    private String hash;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
@@ -42,6 +46,7 @@ public class User implements UserDetails {
         this.lastname = lastname;
         this.password = password;
         this.email = email;
+        this.hash = hash;
         this.roles.addAll(role);
         System.out.println(roles);
     }
