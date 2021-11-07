@@ -95,9 +95,20 @@
                   label="Avatar:"
                   label-for="avatar"
                 >
-                  <img
-                    :src="'https://gravatar.com/avatar/${hash}?d=identicon'"
-                  />
+                  <div v-if="!profilePicture">
+                    <b-img-lazy
+                      :src="'https://gravatar.com/avatar/${hash}?d=identicon'"
+                      height="150px"
+                      width="150px"
+                    />
+                  </div>
+                  <div v-else>
+                    <b-img-lazy
+                      :src="profilePicture"
+                      height="150px"
+                      width="150px"
+                    />
+                  </div>
                 </b-form-group>
               </b-col>
               <b-col />
@@ -106,14 +117,14 @@
               <b-col />
               <b-col cols="12">
                 <b-form-file
-                  v-model="profilePicture"
+                  v-model="profilePictureUpload"
                   class="mb-2"
                   accept=".jpg"
                 ></b-form-file>
                 <b-row>
                   <b-col cols="3" />
                   <b-col>
-                    <div v-if="profilePicture">
+                    <div v-if="profilePictureUpload">
                       <b-button
                         variant="secondary"
                         @click="uploadProfilePicture"
@@ -180,6 +191,7 @@ export default {
       firstname: '',
       lastname: '',
       profilePicture: null,
+      profilePictureUpload: null,
       changed: false,
       updated: false,
       hash: null,
@@ -218,6 +230,16 @@ export default {
       this.initemail = this.email
 
       this.hash = response.data.hash
+
+      if (response.data.profilePictureID) {
+        const profilePictureResponse = await this.$axios
+          .get('profile/picture/', {
+            responseType: 'arraybuffer',
+          })
+          .then((response) => Buffer.from(response.data, 'base64'))
+
+        this.profilePicture = 'data:image/jpeg;base64,' + profilePictureResponse
+      }
     } catch (e) {
       alert(e.toString())
     }
@@ -225,8 +247,13 @@ export default {
   methods: {
     async uploadProfilePicture() {
       try {
-        const response = await this.$axios.post('profile/image', {
-          profilePicture: this.profilePicture,
+        const formData = new FormData()
+        formData.append('profilePicture', this.profilePictureUpload)
+
+        const response = await this.$axios.post('/profile/picture', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         })
         if (response.data.validated === true) {
           this.responseSuccess = response.data.successMessage
@@ -261,3 +288,10 @@ export default {
   },
 }
 </script>
+
+<style>
+.profilePicture {
+  width: 80px;
+  height: 80px;
+}
+</style>

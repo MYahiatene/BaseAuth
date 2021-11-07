@@ -75,6 +75,7 @@ export default {
           const auth = { jwtToken: response.data.jwtToken }
           this.$store.dispatch('authenticated/checkLogin', auth)
           this.$store.dispatch('authenticated/checkRole')
+          // TODO: save profile-image in store
           this.$router.replace('/')
         } else if (response.data.error) {
           this.responseMessage = response.data.error

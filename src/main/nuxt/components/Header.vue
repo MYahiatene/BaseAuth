@@ -19,11 +19,22 @@
                   </b-nav-item-dropdown>
                 </b-col>
                 <b-col>
-                  <b-avatar button nuxt-link to="/profile">
-                    <img
-                      :src="'https://gravatar.com/avatar/${hash}?d=identicon'"
-                    />
-                  </b-avatar>
+                  <div v-if="!profilePicture">
+                    <b-avatar button @click="toProfile">
+                      <b-img-lazy
+                        :src="'https://gravatar.com/avatar/${hash}?d=identicon'"
+                      />
+                    </b-avatar>
+                  </div>
+                  <div v-else>
+                    <b-avatar button @click="toProfile">
+                      <b-img-lazy
+                        :src="profilePicture"
+                        height="80px"
+                        width="80px"
+                      />
+                    </b-avatar>
+                  </div>
                 </b-col>
                 <b-col>
                   <b-nav-item-dropdown right>
@@ -51,12 +62,36 @@
 export default {
   name: 'Header',
   data() {
-    return {}
+    return {
+      hash: null,
+      profilePicture: null,
+    }
   },
   computed: {
     isAdmin() {
       return this.$store.getters['authenticated/getAdmin']
     },
+    isLoggedIn() {
+      return this.$store.getters['authenticated/isLoggedIn']
+    },
+  },
+  async mounted() {
+    if (this.isLoggedIn) {
+      try {
+        const response = await this.$axios.get('user/profile')
+        this.hash = response.data.hash
+
+        const profilePictureResponse = await this.$axios
+          .get('profile/picture/', {
+            responseType: 'arraybuffer',
+          })
+          .then((response) => Buffer.from(response.data, 'base64'))
+
+        this.profilePicture = 'data:image/jpeg;base64,' + profilePictureResponse
+      } catch (e) {
+        alert(e.toString())
+      }
+    }
   },
   methods: {
     logout() {

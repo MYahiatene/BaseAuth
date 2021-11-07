@@ -11,15 +11,18 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
 @NoArgsConstructor
 public class User implements UserDetails {
 
+    @Serial
     private static final long serialVersionUID = 42L;
 
     @Id
@@ -35,6 +38,8 @@ public class User implements UserDetails {
     private String email;
 
     private String hash;
+
+    private UUID profilePictureID;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
