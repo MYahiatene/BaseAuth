@@ -75,6 +75,10 @@ export default {
           const auth = { jwtToken: response.data.jwtToken }
           this.$store.dispatch('authenticated/checkLogin', auth)
           this.$store.dispatch('authenticated/checkRole')
+          this.$store.dispatch('profile/setProfileData')
+          this.$store.dispatch('profile/setProfilePicture')
+          this.$store.dispatch('profile/setProfileHash')
+
           this.$router.replace('/')
         } else if (response.data.error) {
           this.responseMessage = response.data.error
