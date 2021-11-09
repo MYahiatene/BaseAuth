@@ -179,6 +179,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   middleware: 'auth',
   asyncData() {
@@ -200,6 +202,10 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      getProfilePicture: 'profile/getProfilePicture',
+      hasProfilePicture: 'profile/hasProfilePicture',
+    }),
     validationAccountNew() {
       return (
         this.firstname.length !== 0 ||
@@ -231,14 +237,8 @@ export default {
 
       this.hash = response.data.hash
 
-      if (response.data.profilePictureID) {
-        const profilePictureResponse = await this.$axios
-          .get('profile/picture/', {
-            responseType: 'arraybuffer',
-          })
-          .then((response) => Buffer.from(response.data, 'base64'))
-
-        this.profilePicture = 'data:image/jpeg;base64,' + profilePictureResponse
+      if (this.hasProfilePicture) {
+        this.profilePicture = this.getProfilePicture
       }
     } catch (e) {
       alert(e.toString())
@@ -257,6 +257,8 @@ export default {
         })
         if (response.data.validated === true) {
           this.responseSuccess = response.data.successMessage
+          await this.$store.dispatch('profile/setProfilePicture')
+          this.profilePicture = this.getProfilePicture
         } else {
           this.responseError = response.data.errorMessage
         }

@@ -120,7 +120,7 @@
           <b-alert dismissible show variant="success">
             {{ responseMassage }}
             <b-button class="mt-2" variant="success" nuxt-link to="/login">
-              Now you can login and start tracking !
+              Now you can login and start using our app !
             </b-button>
           </b-alert>
         </div>

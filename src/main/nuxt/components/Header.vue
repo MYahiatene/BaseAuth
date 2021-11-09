@@ -5,21 +5,18 @@
         <b-navbar class="navBar fixed-top" type="dark">
           <b-navbar-nav>
             <b-nav-item nuxt-link to="/"> Home </b-nav-item>
-            <div v-if="$store.state.authenticated.authenticated">
-              <b-nav-item nuxt-link to="/dashboard"> Dashboard </b-nav-item>
-            </div>
             <b-nav-item nuxt-link to="/about"> About </b-nav-item>
             <b-nav-item nuxt-link to="/help"> Help </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
-            <div v-if="$store.state.authenticated.authenticated">
+            <div v-if="isLoggedIn">
               <b-row>
                 <b-col>
                   <b-nav-item-dropdown v-if="isAdmin" right text="Admin">
                   </b-nav-item-dropdown>
                 </b-col>
                 <b-col>
-                  <div v-if="!profilePicture">
+                  <div v-if="!hasProfilePicture">
                     <b-avatar button @click="toProfile">
                       <b-img-lazy
                         :src="'https://gravatar.com/avatar/${hash}?d=identicon'"
@@ -29,7 +26,7 @@
                   <div v-else>
                     <b-avatar button @click="toProfile">
                       <b-img-lazy
-                        :src="profilePicture"
+                        :src="getProfilePicture"
                         height="80px"
                         width="80px"
                       />
@@ -39,7 +36,7 @@
                 <b-col>
                   <b-nav-item-dropdown right>
                     <template v-slot:button-content>
-                      <em>User</em>
+                      <em>{{ getUsername }}</em>
                     </template>
                     <b-dropdown-item nuxt-link to="/profile">
                       Profile
@@ -59,6 +56,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Header',
   data() {
@@ -68,28 +67,21 @@ export default {
     }
   },
   computed: {
-    isAdmin() {
-      return this.$store.getters['authenticated/getAdmin']
-    },
-    isLoggedIn() {
-      return this.$store.getters['authenticated/isLoggedIn']
-    },
+    ...mapGetters({
+      getProfilePicture: 'profile/getProfilePicture',
+      getHash: 'profile/getHash',
+      hasProfilePicture: 'profile/hasProfilePicture',
+      isAdmin: 'authenticated/getAdmin',
+      isLoggedIn: 'authenticated/isLoggedIn',
+      getUsername: 'profile/getUsername',
+    }),
   },
-  async mounted() {
+  mounted() {
     if (this.isLoggedIn) {
-      try {
-        const response = await this.$axios.get('user/profile')
-        this.hash = response.data.hash
-
-        const profilePictureResponse = await this.$axios
-          .get('profile/picture/', {
-            responseType: 'arraybuffer',
-          })
-          .then((response) => Buffer.from(response.data, 'base64'))
-
-        this.profilePicture = 'data:image/jpeg;base64,' + profilePictureResponse
-      } catch (e) {
-        alert(e.toString())
+      if (this.hasProfilePicture) {
+        this.profilePicture = this.getProfilePicture
+      } else {
+        this.hash = this.getHash
       }
     }
   },
