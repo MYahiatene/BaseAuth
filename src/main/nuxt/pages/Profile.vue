@@ -167,6 +167,15 @@
                     Your profile was updated successfully!
                   </b-alert>
                 </div>
+                <div
+                  v-if="responseSuccess"
+                  class="pt-2"
+                  style="text-align: center"
+                >
+                  <b-alert dismissible show variant="success">
+                    {{ responseSuccess }}
+                  </b-alert>
+                </div>
               </b-col>
               <b-col />
             </b-row>

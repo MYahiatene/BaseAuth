@@ -53,7 +53,6 @@ public class User implements UserDetails {
         this.email = email;
         this.hash = hash;
         this.roles.addAll(role);
-        System.out.println(roles);
     }
 
     @Override

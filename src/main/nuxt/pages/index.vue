@@ -29,19 +29,12 @@ export default {
   components: {
     Logo,
   },
-  asyncData() {
-    return {
-      isLoggedIn: false,
-    }
+  asyncData() {},
+  computed: {
+    ...mapGetters({ isLoggedIn: 'authenticated/isLoggedIn' }),
   },
-  mounted() {
-    if (this.getAccountStatus()) {
-      this.isLoggedIn = true
-    }
-  },
-  methods: {
-    ...mapGetters({ getAccountStatus: 'authenticated/isLoggedIn' }),
-  },
+  mounted() {},
+  methods: {},
 }
 </script>
 

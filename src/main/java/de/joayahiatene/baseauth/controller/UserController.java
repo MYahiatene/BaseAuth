@@ -84,7 +84,7 @@ public class UserController {
         ValidationResponse validationResponse = new ValidationResponse();
         fileLocationService.save(profilePicture.getBytes(), profilePicture.getOriginalFilename(), principal.getName());
         validationResponse.setValidated(true);
-        validationResponse.setSuccessMessage("Uploaded!");
+        validationResponse.setSuccessMessage("Your profile picture was successfully uploaded!");
         return validationResponse;
     }
 
