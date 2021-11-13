@@ -19,7 +19,11 @@
                   <div v-if="!hasProfilePicture">
                     <b-avatar button @click="toProfile">
                       <b-img-lazy
-                        :src="'https://gravatar.com/avatar/${hash}?d=identicon'"
+                        :src="
+                          'https://gravatar.com/avatar/' +
+                          getHash +
+                          '?d=identicon'
+                        "
                       />
                     </b-avatar>
                   </div>
@@ -62,7 +66,6 @@ export default {
   name: 'Header',
   data() {
     return {
-      hash: null,
       profilePicture: null,
     }
   },
@@ -76,15 +79,7 @@ export default {
       getUsername: 'profile/getUsername',
     }),
   },
-  mounted() {
-    if (this.isLoggedIn) {
-      if (this.hasProfilePicture) {
-        this.profilePicture = this.getProfilePicture
-      } else {
-        this.hash = this.getHash
-      }
-    }
-  },
+  mounted() {},
   methods: {
     logout() {
       this.$store.dispatch('authenticated/logout')

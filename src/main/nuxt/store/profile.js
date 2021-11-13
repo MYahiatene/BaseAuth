@@ -3,6 +3,9 @@ export const state = () => ({
   profilePicture: null,
   hasProfilePicture: false,
   username: null,
+  firstname: null,
+  lastname: null,
+  email: null,
 })
 
 export const mutations = {
@@ -17,18 +20,25 @@ export const mutations = {
     const profileHashLocal = localStorage.getItem('user-profile-hash')
     state.hash = profileHashLocal
   },
-  setProfileData(state, username) {
-    state.username = username
+  setProfileData(state, userdata) {
+    state.username = userdata.username
+    state.firstname = userdata.firstname
+    state.lastname = userdata.lastname
+    state.email = userdata.email
   },
 }
 
 export const actions = {
   async setProfileData({ commit }) {
-    // TODO: Propably expand to all user relevant data
     try {
       const response = await this.$axios.get('user/profile')
       const username = response.data.username
-      await commit('setProfileData', username)
+      const lastname = response.data.lastname
+      const firstname = response.data.firstname
+      const email = response.data.email
+
+      const userdata = { username, lastname, firstname, email }
+      await commit('setProfileData', userdata)
     } catch (e) {
       alert(e.toString())
     }
@@ -65,6 +75,9 @@ export const actions = {
 export const getters = {
   getHash: (state) => state.hash,
   getUsername: (state) => state.username,
+  getFirstname: (state) => state.firstname,
+  getLastname: (state) => state.lastname,
+  getEmail: (state) => state.email,
   getProfilePicture: (state) => state.profilePicture,
   hasProfilePicture: (state) => state.hasProfilePicture,
 }

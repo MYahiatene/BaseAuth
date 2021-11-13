@@ -95,16 +95,18 @@
                   label="Avatar:"
                   label-for="avatar"
                 >
-                  <div v-if="!profilePicture">
+                  <div v-if="!hasProfilePicture">
                     <b-img-lazy
-                      :src="'https://gravatar.com/avatar/${hash}?d=identicon'"
-                      height="150px"
-                      width="150px"
+                      :src="
+                        'https://gravatar.com/avatar/' +
+                        getHash +
+                        '?d=identicon'
+                      "
                     />
                   </div>
                   <div v-else>
                     <b-img-lazy
-                      :src="profilePicture"
+                      :src="getProfilePicture"
                       height="150px"
                       width="150px"
                     />
@@ -201,11 +203,9 @@ export default {
       email: '',
       firstname: '',
       lastname: '',
-      profilePicture: null,
       profilePictureUpload: null,
       changed: false,
       updated: false,
-      hash: null,
       responseError: null,
       responseSuccess: null,
     }
@@ -214,6 +214,11 @@ export default {
     ...mapGetters({
       getProfilePicture: 'profile/getProfilePicture',
       hasProfilePicture: 'profile/hasProfilePicture',
+      getHash: 'profile/getHash',
+      getUsername: 'profile/getUsername',
+      getFirstname: 'profile/getFirstname',
+      getLastname: 'profile/getLastname',
+      getEmail: 'profile/getEmail',
     }),
     validationAccountNew() {
       return (
@@ -230,25 +235,18 @@ export default {
       )
     },
   },
-  async mounted() {
+  mounted() {
     try {
-      const response = await this.$axios.get('user/profile')
-      this.username = response.data.username
+      this.username = this.getUsername
 
-      this.firstname = response.data.firstname
+      this.firstname = this.getFirstname
       this.initfirstname = this.firstname
 
-      this.lastname = response.data.lastname
+      this.lastname = this.getLastname
       this.initlastname = this.lastname
 
-      this.email = response.data.email
+      this.email = this.getEmail
       this.initemail = this.email
-
-      this.hash = response.data.hash
-
-      if (this.hasProfilePicture) {
-        this.profilePicture = this.getProfilePicture
-      }
     } catch (e) {
       alert(e.toString())
     }
@@ -286,6 +284,7 @@ export default {
         if (response.data.validated === true) {
           this.updated = true
         }
+        await this.$store.dispatch('profile/setProfileData')
       } catch (e) {
         alert(e.toString())
       }
