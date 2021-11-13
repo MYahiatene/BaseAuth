@@ -24,6 +24,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/pwa',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
@@ -35,6 +36,7 @@ export default {
       },
     ],
     '@nuxtjs/axios',
+    '@nuxtjs/pwa',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -44,4 +46,18 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {},
+  pwa: {
+    manifest: {
+      name: 'BaseAuth 0.5',
+      lang: 'en',
+      useWebmanifestExtension: false,
+    },
+    meta: {
+      title: 'BaseAuth',
+      author: 'DesertGun and MYahiatene',
+    },
+    icon: {
+      fileName: 'icon.png',
+    },
+  },
 }

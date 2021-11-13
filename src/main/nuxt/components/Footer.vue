@@ -14,9 +14,7 @@
           </b-nav>
         </b-col>
         <b-col />
-        <b-col>
-          <!--TODO: Add content later-->
-        </b-col>
+        <b-col />
         <b-col />
         <b-col>
           <h5>Terms</h5>
