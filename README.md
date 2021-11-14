@@ -7,7 +7,7 @@ Since Authentication was proven to be the most important and complex part of a W
 The whole project will be and stay Open-Source, since we want to learn and improve our skills through community-feedback.
 
 # To run BaseAuth in a dev env. you need to have
-    - NodeJS 16.X (Will be updated)
+    - NodeJS 16.X
     - OpenJDK 17.X
     - MariaDB:latest (optional) (Planned?!)
 # Folder-structure
