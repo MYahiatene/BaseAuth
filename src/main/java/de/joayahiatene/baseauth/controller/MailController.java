@@ -21,6 +21,6 @@ public class MailController {
 
     @PostMapping("/sendEmail")
     public void sendEmail() {
-        mailService.sendMail("Test","Test","noreplybaseauth@gmail.com");
+        mailService.sendMail("Test","Test","<emailsenderadress>");
     }
 }

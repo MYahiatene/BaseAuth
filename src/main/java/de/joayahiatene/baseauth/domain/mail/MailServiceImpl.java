@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class MailServiceImpl implements MailService {
-    private static final String MAILADRESS = "noreplybaseauth@gmail.com";
+    private static final String MAILADRESS = "<emailsenderadress>";
     private List<String> mailAdresses;
     private final JavaMailSender javaMailSender;
 
